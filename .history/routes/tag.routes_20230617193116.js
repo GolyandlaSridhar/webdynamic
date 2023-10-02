@@ -1,1 +1,0 @@
-const tags = require
