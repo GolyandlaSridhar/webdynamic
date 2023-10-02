@@ -1,0 +1,78 @@
+{
+    "sourceFile": "models/Conversations.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 15,
+            "patches": [
+                {
+                    "date": 1691144837593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1691144842800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-const moo\n\\ No newline at end of file\n+const mongoose \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691144850694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,3 @@\n-const mongoose \n\\ No newline at end of file\n+const mongoose = require('mongoose');\n+\n+const \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691144858855,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n const mongoose = require('mongoose');\n \n-const \n\\ No newline at end of file\n+const converationS\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691144866356,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n const mongoose = require('mongoose');\n \n-const converationS\n\\ No newline at end of file\n+const converationSchema = mo\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691144872080,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n const mongoose = require('mongoose');\n \n-const converationSchema = mo\n\\ No newline at end of file\n+const converationSchema = mongoose.Schema\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691144881887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,5 @@\n const mongoose = require('mongoose');\n \n-const converationSchema = mongoose.Schema\n\\ No newline at end of file\n+const converationSchema = mongoose.Schema({\n+  mem\n+})\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691144888329,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n const mongoose = require('mongoose');\n \n const converationSchema = mongoose.Schema({\n-  mem\n+  members: {\n+    type: Array,\n+    required: true\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691144901908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,5 +3,8 @@\n const converationSchema = mongoose.Schema({\n   members: {\n     type: Array,\n     required: true\n-})\n\\ No newline at end of file\n+  }\n+})\n+\n+const schema =\n"
+                },
+                {
+                    "date": 1691144908481,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,5 +6,5 @@\n     required: true\n   }\n })\n \n-const schema =\n+const Co\n"
+                },
+                {
+                    "date": 1691144914527,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,5 +6,5 @@\n     required: true\n   }\n })\n \n-const Co\n+const Conversation\n"
+                },
+                {
+                    "date": 1691144921834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,5 +6,5 @@\n     required: true\n   }\n })\n \n-const Conversation\n+const Conversation = mongoose.m\n"
+                },
+                {
+                    "date": 1691144928993,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,5 +6,5 @@\n     required: true\n   }\n })\n \n-const Conversation = mongoose.m\n+const Conversation = mongoose.model('Conversation', schema\n"
+                },
+                {
+                    "date": 1691144936390,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,5 +6,5 @@\n     required: true\n   }\n })\n \n-const Conversation = mongoose.model('Conversation', schema\n+const Conversation = mongoose.model('Conversation', converationSchema);\n"
+                },
+                {
+                    "date": 1691144941634,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,4 +7,6 @@\n   }\n })\n \n const Conversation = mongoose.model('Conversation', converationSchema);\n+\n+module.exports = Conversation;\n"
+                },
+                {
+                    "date": 1691145186577,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,12 @@\n-const mongoose = require('mongoose');\n+const mongoose = require(\"mongoose\")\n \n const converationSchema = mongoose.Schema({\n   members: {\n     type: Array,\n-    required: true\n-  }\n+    required: true,\n+  },\n })\n \n-const Conversation = mongoose.model('Conversation', converationSchema);\n+const Conversation = mongoose.model(\"Conversation\", converationSchema)\n \n-module.exports = Conversation;\n+module.exports = Conversation\n"
+                }
+            ],
+            "date": 1691144837593,
+            "name": "Commit-0",
+            "content": "const moo"
+        }
+    ]
+}

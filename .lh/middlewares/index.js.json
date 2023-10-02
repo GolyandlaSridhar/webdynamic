@@ -1,0 +1,26 @@
+{
+    "sourceFile": "middlewares/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1687946266776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1687946272353,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n const authJwt = require(\"./authJwt\");\n const verifySignUp = require(\"./verifySignUp\");\n-const is\n+const isLoggedIn = requi\n \n module.exports = {\n   authJwt,\n   verifySignUp\n"
+                },
+                {
+                    "date": 1687946283929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n const authJwt = require(\"./authJwt\");\n const verifySignUp = require(\"./verifySignUp\");\n-const isLoggedIn = requi\n \n module.exports = {\n   authJwt,\n   verifySignUp\n"
+                }
+            ],
+            "date": 1687946266776,
+            "name": "Commit-0",
+            "content": "const authJwt = require(\"./authJwt\");\nconst verifySignUp = require(\"./verifySignUp\");\nconst is\n\nmodule.exports = {\n  authJwt,\n  verifySignUp\n};\n"
+        }
+    ]
+}

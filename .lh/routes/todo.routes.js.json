@@ -1,0 +1,234 @@
+{
+    "sourceFile": "routes/todo.routes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 54,
+            "patches": [
+                {
+                    "date": 1686986299628,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1686986310148,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,2 @@\n+const tutorials = require(\"../controllers/tutorial.controller\")\n+const router = require(\"express\").Router()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1686986317178,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,2 @@\n-const tutorials = require(\"../controllers/tutorial.controller\")\n-const router = require(\"express\").Router()\n-todo.routes.js\n\\ No newline at end of file\n+const tutorials = require(\"../controllers/t.controller\")\n+const router = require(\"express\").Router()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1686986324507,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,2 @@\n-const tutorials = require(\"../controllers/t.controller\")\n+const todos = require(\"../controllers/todo.controller\")\n const router = require(\"express\").Router()\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1686986336854,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,4 @@\n const todos = require(\"../controllers/todo.controller\")\n-const router = require(\"express\").Router()\n\\ No newline at end of file\n+const router = require(\"express\").Router()\n+\n+module.expo\n"
+                },
+                {
+                    "date": 1686986343731,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n const todos = require(\"../controllers/todo.controller\")\n const router = require(\"express\").Router()\n \n-module.expo\n+module.exports = (app) => {\n+  \n+}\n"
+                },
+                {
+                    "date": 1686986358265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n const todos = require(\"../controllers/todo.controller\")\n const router = require(\"express\").Router()\n \n module.exports = (app) => {\n-  \n+  // Fetch all tutorials\n+  router.get(\"/\", tutorials.findAll)\n }\n"
+                },
+                {
+                    "date": 1686986365806,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n const todos = require(\"../controllers/todo.controller\")\n const router = require(\"express\").Router()\n \n module.exports = (app) => {\n+\n   // Fetch all tutorials\n-  router.get(\"/\", tutorials.findAll)\n+  router.get(\"/\", todos.findAll)\n+\n }\n"
+                },
+                {
+                    "date": 1686986385837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,5 +5,8 @@\n \n   // Fetch all tutorials\n   router.get(\"/\", todos.findAll)\n \n+\n+  app.\n+\n }\n"
+                },
+                {
+                    "date": 1686986399194,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,7 +6,7 @@\n   // Fetch all tutorials\n   router.get(\"/\", todos.findAll)\n \n \n-  app.\n+  app.use(\"api/\")\n \n }\n"
+                },
+                {
+                    "date": 1686986405350,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,7 +6,7 @@\n   // Fetch all tutorials\n   router.get(\"/\", todos.findAll)\n \n \n-  app.use(\"api/\")\n+  app.use(\"/api/\")\n \n }\n"
+                },
+                {
+                    "date": 1686986410943,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,7 +6,7 @@\n   // Fetch all tutorials\n   router.get(\"/\", todos.findAll)\n \n \n-  app.use(\"/api/\")\n+  app.use(\"/api/\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686986559323,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n \n module.exports = (app) => {\n \n   // Fetch all tutorials\n-  router.get(\"/\", todos.findAll)\n+  router.get(\"/\", todos.)\n \n \n   app.use(\"/api/\", router)\n \n"
+                },
+                {
+                    "date": 1686986705059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,12 @@\n \n module.exports = (app) => {\n \n   // Fetch all tutorials\n-  router.get(\"/\", todos.)\n+  router.get(\"/\", todos.findAll)\n \n+  // Creatre\n \n+\n   app.use(\"/api/\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686986712931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,10 @@\n \n   // Fetch all tutorials\n   router.get(\"/\", todos.findAll)\n \n-  // Creatre\n+  // Create a todo\n+  rou\n \n \n   app.use(\"/api/\", router)\n \n"
+                },
+                {
+                    "date": 1686986718869,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   // Fetch all tutorials\n   router.get(\"/\", todos.findAll)\n \n   // Create a todo\n-  rou\n+  router.post(\"\")\n \n \n   app.use(\"/api/\", router)\n \n"
+                },
+                {
+                    "date": 1686986727728,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   // Fetch all tutorials\n   router.get(\"/\", todos.findAll)\n \n   // Create a todo\n-  router.post(\"\")\n+  router.post(\"/\")\n \n \n   app.use(\"/api/\", router)\n \n"
+                },
+                {
+                    "date": 1686986733624,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   // Fetch all tutorials\n   router.get(\"/\", todos.findAll)\n \n   // Create a todo\n-  router.post(\"/\")\n+  router.post(\"/\", todos/)\n \n \n   app.use(\"/api/\", router)\n \n"
+                },
+                {
+                    "date": 1686986739548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   // Fetch all tutorials\n   router.get(\"/\", todos.findAll)\n \n   // Create a todo\n-  router.post(\"/\", todos/)\n+  router.post(\"/\", todos.create)\n \n \n   app.use(\"/api/\", router)\n \n"
+                },
+                {
+                    "date": 1686986751169,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \n   // Fetch all tutorials\n   router.get(\"/\", todos.findAll)\n \n-  // Create a todo\n+  // Create a new todo\n   router.post(\"/\", todos.create)\n \n \n   app.use(\"/api/\", router)\n"
+                },
+                {
+                    "date": 1686986796313,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \n   // Fetch all tutorials\n   router.get(\"/\", todos.findAll)\n \n-  // Create a new todo\n+  // Create a new id(req.bodytodo\n   router.post(\"/\", todos.create)\n \n \n   app.use(\"/api/\", router)\n"
+                },
+                {
+                    "date": 1686987336996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,11 @@\n \n   // Fetch all tutorials\n   router.get(\"/\", todos.findAll)\n \n-  // Create a new id(req.bodytodo\n+  // Create a new todo\n   router.post(\"/\", todos.create)\n \n \n-  app.use(\"/api/\", router)\n+  app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988086702,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,8 @@\n \n   // Create a new todo\n   router.post(\"/\", todos.create)\n \n-\n+  \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988092109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,8 @@\n \n   // Create a new todo\n   router.post(\"/\", todos.create)\n \n-  \n+  // Find a \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988097305,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n \n   // Create a new todo\n   router.post(\"/\", todos.create)\n \n-  // Find a \n+  // Find a Todo details\n+  \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988103941,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,8 @@\n   // Create a new todo\n   router.post(\"/\", todos.create)\n \n   // Find a Todo details\n-  \n+  router.post(\"\")\n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988112340,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,8 @@\n   // Create a new todo\n   router.post(\"/\", todos.create)\n \n   // Find a Todo details\n-  router.post(\"\")\n+  router.post(\"/:id\", todos.)\n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988131190,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n   // Create a new todo\n   router.post(\"/\", todos.create)\n \n   // Find a Todo details\n-  router.post(\"/:id\", todos.)\n+  router.get(\"/:id\", todos.findOne)\n+\n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988454744,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,7 +11,9 @@\n \n   // Find a Todo details\n   router.get(\"/:id\", todos.findOne)\n \n+  \n+\n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988478208,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,10 @@\n \n   // Find a Todo details\n   router.get(\"/:id\", todos.findOne)\n \n-  \n+  // Update a tutorial with id\n+  router.put(\"/:id\", tutorials.update)\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988485008,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,10 @@\n \n   // Find a Todo details\n   router.get(\"/:id\", todos.findOne)\n \n-  // Update a tutorial with id\n-  router.put(\"/:id\", tutorials.update)\n+  // Update a todos with id\n+  router.put(\"/:id\", todos.update)\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988744085,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,7 +14,9 @@\n \n   // Update a todos with id\n   router.put(\"/:id\", todos.update)\n \n+  \n+\n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988749745,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n \n   // Update a todos with id\n   router.put(\"/:id\", todos.update)\n \n-  \n+  // Delete a \n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988756568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,12 +11,12 @@\n \n   // Find a Todo details\n   router.get(\"/:id\", todos.findOne)\n \n-  // Update a todos with id\n+  // Update a todo with id\n   router.put(\"/:id\", todos.update)\n \n-  // Delete a \n+  // Delete a todo with id\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988765054,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n   // Update a todo with id\n   router.put(\"/:id\", todos.update)\n \n   // Delete a todo with id\n+  router.d\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988771588,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   // Update a todo with id\n   router.put(\"/:id\", todos.update)\n \n   // Delete a todo with id\n-  router.d\n+  router.delete(\"/:id\", )\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988778985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   // Update a todo with id\n   router.put(\"/:id\", todos.update)\n \n   // Delete a todo with id\n-  router.delete(\"/:id\", )\n+  router.delete(\"/:id\", todos.delete)\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988877093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,7 +17,10 @@\n \n   // Delete a todo with id\n   router.delete(\"/:id\", todos.delete)\n \n+  // Delete a todo with id\n+  router.delete(\"/:id\", todos.delete)\n+\n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686988884868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n   // Delete a todo with id\n   router.delete(\"/:id\", todos.delete)\n \n   // Delete a todo with id\n-  router.delete(\"/:id\", todos.delete)\n+  router.delete(\"/\", todos.deleteAll)\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686989046705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,7 +20,10 @@\n \n   // Delete a todo with id\n   router.delete(\"/\", todos.deleteAll)\n \n+  // Delete a todo with id\n+  router.delete(\"/\", todos.deleteAll)\n+\n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686989053094,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n   // Delete a todo with id\n   router.delete(\"/\", todos.deleteAll)\n \n-  // Delete a todo with id\n+  // Completed todo with id\n   router.delete(\"/\", todos.deleteAll)\n \n   app.use(\"/api/todos\", router)\n \n"
+                },
+                {
+                    "date": 1686989059114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n   // Delete a todo with id\n   router.delete(\"/\", todos.deleteAll)\n \n-  // Completed todo with id\n+  // Completed todos list\n   router.delete(\"/\", todos.deleteAll)\n \n   app.use(\"/api/todos\", router)\n \n"
+                },
+                {
+                    "date": 1686989064239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   // Delete a todo with id\n   router.delete(\"/\", todos.deleteAll)\n \n   // Completed todos list\n-  router.delete(\"/\", todos.deleteAll)\n+  router.delete(\"/\", todos.com)\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686989073237,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   // Delete a todo with id\n   router.delete(\"/\", todos.deleteAll)\n \n   // Completed todos list\n-  router.delete(\"/\", todos.com)\n+  router.delete(\"/\", todos.findAllCompleted)\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686989106567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   // Delete a todo with id\n   router.delete(\"/\", todos.deleteAll)\n \n   // Completed todos list\n-  router.delete(\"/\", todos.findAllCompleted)\n+  router.get(\"/\", todos.findAllCompleted)\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686989113494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   // Delete a todo with id\n   router.delete(\"/\", todos.deleteAll)\n \n   // Completed todos list\n-  router.get(\"/\", todos.findAllCompleted)\n+  router.get(\"/completed\", todos.findAllCompleted)\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686989879800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   // Delete a todo with id\n   router.delete(\"/\", todos.deleteAll)\n \n   // Completed todos list\n-  router.get(\"/completed\", todos.findAllCompleted)\n+  router.get(\"/completed\", todos.find)\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686990464567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   // Delete a todo with id\n   router.delete(\"/\", todos.deleteAll)\n \n   // Completed todos list\n-  router.get(\"/completed\", todos.find)\n+  router.get(\"/completed\", todos.findAllCompleted)\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686990513475,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n   router.delete(\"/\", todos.deleteAll)\n \n   // Completed todos list\n   router.get(\"/completed\", todos.findAllCompleted)\n+  router.get(\"/published\", tutorials.findAllPublished)\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1686990525002,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,8 @@\n   router.delete(\"/\", todos.deleteAll)\n \n   // Completed todos list\n   router.get(\"/completed\", todos.findAllCompleted)\n-  router.get(\"/published\", tutorials.findAllPublished)\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1687010171893,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,7 +23,10 @@\n \n   // Completed todos list\n   router.get(\"/completed\", todos.findAllCompleted)\n \n+  // Incomplete todos list\n+  router.\n+\n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1687010178434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n   // Completed todos list\n   router.get(\"/completed\", todos.findAllCompleted)\n \n   // Incomplete todos list\n-  router.\n+  router.get(\"/\")\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1687010183742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n   // Completed todos list\n   router.get(\"/completed\", todos.findAllCompleted)\n \n   // Incomplete todos list\n-  router.get(\"/\")\n+  router.get(\"/incomplete\", )\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1687010191705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n   // Completed todos list\n   router.get(\"/completed\", todos.findAllCompleted)\n \n   // Incomplete todos list\n-  router.get(\"/incomplete\", )\n+  router.get(\"/incomplete\", todos.findAllInCompleted)\n \n   app.use(\"/api/todos\", router)\n \n }\n"
+                },
+                {
+                    "date": 1687156704667,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,10 +23,7 @@\n \n   // Completed todos list\n   router.get(\"/completed\", todos.findAllCompleted)\n \n-  // Incomplete todos list\n-  router.get(\"/incomplete\", todos.findAllInCompleted)\n-\n   app.use(\"/api/todos\", router)\n \n }\n"
+                }
+            ],
+            "date": 1686986299628,
+            "name": "Commit-0",
+            "content": "todo.routes.js"
+        }
+    ]
+}
