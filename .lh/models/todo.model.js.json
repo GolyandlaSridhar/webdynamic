@@ -1,0 +1,134 @@
+{
+    "sourceFile": "models/todo.model.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 29,
+            "patches": [
+                {
+                    "date": 1686982842116,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1686982853258,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,12 @@\n-todo.model.js\n\\ No newline at end of file\n+const mongoose = require(\"mongoose\")\n+\n+const Tutorial = mongoose.model(\n+  \"Tutorial\",\n+  new mongoose.Schema({\n+    title: String,\n+    description: String,\n+    published: Boolean\n+  }, { timestamps: true })\n+)\n+\n+module.exports = Tutorial\n"
+                },
+                {
+                    "date": 1686982861371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n const mongoose = require(\"mongoose\")\n \n-const Tutorial = mongoose.model(\n-  \"Tutorial\",\n+const Todo = mongoose.model(\n+  \"Todo\",\n   new mongoose.Schema({\n     title: String,\n     description: String,\n     published: Boolean\n"
+                },
+                {
+                    "date": 1686982872620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const Todo = mongoose.model(\n   \"Todo\",\n   new mongoose.Schema({\n     title: String,\n-    description: String,\n+    email: String,\n     published: Boolean\n   }, { timestamps: true })\n )\n \n"
+                },
+                {
+                    "date": 1686982878550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   \"Todo\",\n   new mongoose.Schema({\n     title: String,\n     email: String,\n-    published: Boolean\n+    done: Boolean\n   }, { timestamps: true })\n )\n \n module.exports = Tutorial\n"
+                },
+                {
+                    "date": 1686982972966,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,9 @@\n \n const Todo = mongoose.model(\n   \"Todo\",\n   new mongoose.Schema({\n-    title: String,\n-    email: String,\n-    done: Boolean\n+    \n   }, { timestamps: true })\n )\n \n module.exports = Tutorial\n"
+                },
+                {
+                    "date": 1686982978777,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n const Todo = mongoose.model(\n   \"Todo\",\n   new mongoose.Schema({\n-    \n+    user\n   }, { timestamps: true })\n )\n \n module.exports = Tutorial\n"
+                },
+                {
+                    "date": 1686982985195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,11 @@\n \n const Todo = mongoose.model(\n   \"Todo\",\n   new mongoose.Schema({\n-    user\n+    user: {\n+      type\n+    }\n   }, { timestamps: true })\n )\n \n module.exports = Tutorial\n"
+                },
+                {
+                    "date": 1686982991806,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const Todo = mongoose.model(\n   \"Todo\",\n   new mongoose.Schema({\n     user: {\n-      type\n+      type: Sche\n     }\n   }, { timestamps: true })\n )\n \n"
+                },
+                {
+                    "date": 1686982998407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const Todo = mongoose.model(\n   \"Todo\",\n   new mongoose.Schema({\n     user: {\n-      type: Sche\n+      type: mongoose.Schema.Types.\n     }\n   }, { timestamps: true })\n )\n \n"
+                },
+                {
+                    "date": 1686983004327,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const Todo = mongoose.model(\n   \"Todo\",\n   new mongoose.Schema({\n     user: {\n-      type: mongoose.Schema.Types.\n+      type: mongoose.Schema.Types.user.o\n     }\n   }, { timestamps: true })\n )\n \n"
+                },
+                {
+                    "date": 1686983016016,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const Todo = mongoose.model(\n   \"Todo\",\n   new mongoose.Schema({\n     user: {\n-      type: mongoose.Schema.Types.user.o\n+      type: mongoose.Schema.Types.\n     }\n   }, { timestamps: true })\n )\n \n"
+                },
+                {
+                    "date": 1686983022210,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,10 @@\n const Todo = mongoose.model(\n   \"Todo\",\n   new mongoose.Schema({\n     user: {\n-      type: mongoose.Schema.Types.\n+      type: mongoose.Schema.Types.ObjectId,\n+      ref\n     }\n   }, { timestamps: true })\n )\n \n"
+                },
+                {
+                    "date": 1686983067783,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   \"Todo\",\n   new mongoose.Schema({\n     user: {\n       type: mongoose.Schema.Types.ObjectId,\n-      ref\n+      ref: \"users\"\n     }\n   }, { timestamps: true })\n )\n \n"
+                },
+                {
+                    "date": 1686983076260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,10 @@\n   new mongoose.Schema({\n     user: {\n       type: mongoose.Schema.Types.ObjectId,\n       ref: \"users\"\n-    }\n+    },\n+    name:\n   }, { timestamps: true })\n )\n \n module.exports = Tutorial\n"
+                },
+                {
+                    "date": 1686983082434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,11 @@\n     user: {\n       type: mongoose.Schema.Types.ObjectId,\n       ref: \"users\"\n     },\n-    name:\n+    name: {\n+      ty\n+    }\n   }, { timestamps: true })\n )\n \n module.exports = Tutorial\n"
+                },
+                {
+                    "date": 1686983090675,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,11 @@\n       type: mongoose.Schema.Types.ObjectId,\n       ref: \"users\"\n     },\n     name: {\n-      ty\n-    }\n+      type: String\n+    },\n+    \n   }, { timestamps: true })\n )\n \n module.exports = Tutorial\n"
+                },
+                {
+                    "date": 1686983099580,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,11 @@\n     },\n     name: {\n       type: String\n     },\n-    \n+    text: {\n+      ty\n+    }\n   }, { timestamps: true })\n )\n \n module.exports = Tutorial\n"
+                },
+                {
+                    "date": 1686983105868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,11 @@\n     name: {\n       type: String\n     },\n     text: {\n-      ty\n-    }\n+      type: String\n+    },\n+    \n   }, { timestamps: true })\n )\n \n module.exports = Tutorial\n"
+                },
+                {
+                    "date": 1686983126661,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,11 +10,12 @@\n     name: {\n       type: String\n     },\n     text: {\n-      type: String\n+      type: String,\n+      \n     },\n-    \n+\n   }, { timestamps: true })\n )\n \n module.exports = Tutorial\n"
+                },
+                {
+                    "date": 1686983132157,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n       type: String\n     },\n     text: {\n       type: String,\n-      \n+      require\n     },\n \n   }, { timestamps: true })\n )\n"
+                },
+                {
+                    "date": 1686983137995,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n       type: String\n     },\n     text: {\n       type: String,\n-      require\n+      required: tu\n     },\n \n   }, { timestamps: true })\n )\n"
+                },
+                {
+                    "date": 1686983143082,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,11 +11,11 @@\n       type: String\n     },\n     text: {\n       type: String,\n-      required: tu\n+      required: true\n     },\n-\n+` `\n   }, { timestamps: true })\n )\n \n module.exports = Tutorial\n"
+                },
+                {
+                    "date": 1686983157804,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,11 @@\n     text: {\n       type: String,\n       required: true\n     },\n-` `\n+    completed: {\n+      tyep\n+    }\n   }, { timestamps: true })\n )\n \n module.exports = Tutorial\n"
+                },
+                {
+                    "date": 1686983163282,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       type: String,\n       required: true\n     },\n     completed: {\n-      tyep\n+      type: Boolean\n     }\n   }, { timestamps: true })\n )\n \n"
+                },
+                {
+                    "date": 1686983171283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,10 @@\n       type: String,\n       required: true\n     },\n     completed: {\n-      type: Boolean\n+      type: Boolean,\n+      default: false\n     }\n   }, { timestamps: true })\n )\n \n"
+                },
+                {
+                    "date": 1686983185321,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,12 @@\n     },\n     completed: {\n       type: Boolean,\n       default: false\n-    }\n+    },\n+    tags: [\n+      \n+    ]\n   }, { timestamps: true })\n )\n \n module.exports = Tutorial\n"
+                },
+                {
+                    "date": 1686983192390,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,11 @@\n       type: Boolean,\n       default: false\n     },\n     tags: [\n-      \n+      {\n+        name: String\n+      }\n     ]\n   }, { timestamps: true })\n )\n \n"
+                },
+                {
+                    "date": 1686983212172,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,9 @@\n     user: {\n       type: mongoose.Schema.Types.ObjectId,\n       ref: \"users\"\n     },\n-    name: {\n-      type: String\n+    name: String\n     },\n     text: {\n       type: String,\n       required: true\n"
+                },
+                {
+                    "date": 1686983238173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,9 @@\n     user: {\n       type: mongoose.Schema.Types.ObjectId,\n       ref: \"users\"\n     },\n-    name: String\n-    },\n+    name: String,\n     text: {\n       type: String,\n       required: true\n     },\n@@ -24,5 +23,5 @@\n     ]\n   }, { timestamps: true })\n )\n \n-module.exports = Tutorial\n+module.exports = Todo\n"
+                }
+            ],
+            "date": 1686982842116,
+            "name": "Commit-0",
+            "content": "todo.model.js"
+        }
+    ]
+}

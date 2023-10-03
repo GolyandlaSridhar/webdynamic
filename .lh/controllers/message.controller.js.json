@@ -1,0 +1,230 @@
+{
+    "sourceFile": "controllers/message.controller.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 53,
+            "patches": [
+                {
+                    "date": 1691152434792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1691152440280,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-const \n\\ No newline at end of file\n+const db = require('\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691152445683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-const db = require('\n\\ No newline at end of file\n+const db = require('../models/\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691152456392,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,3 @@\n-const db = require('../models/\n\\ No newline at end of file\n+const db = require('../models/index');\n+\n+const \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691152461691,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n const db = require('../models/index');\n \n-const \n\\ No newline at end of file\n+const User = \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691152469377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,4 @@\n const db = require('../models/index');\n \n-const User = \n\\ No newline at end of file\n+const User = db.user\n+const \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691152475742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n const db = require('../models/index');\n \n const User = db.user\n-const \n\\ No newline at end of file\n+const conversation=\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691152481352,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n const db = require('../models/index');\n \n const User = db.user\n-const conversation=\n\\ No newline at end of file\n+const conversation = db.conversation\n"
+                },
+                {
+                    "date": 1691152486689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n const db = require('../models/index');\n \n const User = db.user\n const conversation = db.conversation\n+const me\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691152491755,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n const db = require('../models/index');\n \n const User = db.user\n const conversation = db.conversation\n-const me\n\\ No newline at end of file\n+const message = db.message\n+\n"
+                },
+                {
+                    "date": 1691152506716,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-const db = require('../models/index');\n+const db = require(\"../models/index\")\n \n const User = db.user\n const conversation = db.conversation\n const message = db.message\n-\n+export\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691152512664,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,5 @@\n \n const User = db.user\n const conversation = db.conversation\n const message = db.message\n-export\n\\ No newline at end of file\n+export.create = \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691152518558,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,5 @@\n \n const User = db.user\n const conversation = db.conversation\n const message = db.message\n-export.create = \n\\ No newline at end of file\n+export.create = async function create\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691152527450,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,5 @@\n \n const User = db.user\n const conversation = db.conversation\n const message = db.message\n-export.create = async function create\n\\ No newline at end of file\n+export.create = async (req, res)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691152534174,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,7 @@\n \n const User = db.user\n const conversation = db.conversation\n const message = db.message\n-export.create = async (req, res)\n\\ No newline at end of file\n+\n+export.create = async (req, res) => {\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691152539781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,6 +3,6 @@\n const User = db.user\n const conversation = db.conversation\n const message = db.message\n \n-export.create = async (req, res) => {\n+exports.create = async (req, res) => {\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1691152884400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,5 +4,6 @@\n const conversation = db.conversation\n const message = db.message\n \n exports.create = async (req, res) => {\n-}\n\\ No newline at end of file\n+  \n+}\n"
+                },
+                {
+                    "date": 1691153097748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,6 +4,6 @@\n const conversation = db.conversation\n const message = db.message\n \n exports.create = async (req, res) => {\n-  \n+  try\n }\n"
+                },
+                {
+                    "date": 1691153105030,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,6 +4,8 @@\n const conversation = db.conversation\n const message = db.message\n \n exports.create = async (req, res) => {\n-  try\n+  try {\n+    \n+  }cat\n }\n"
+                },
+                {
+                    "date": 1691153111445,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,6 +6,11 @@\n \n exports.create = async (req, res) => {\n   try {\n     \n-  }cat\n+  } catch (err) {\n+    res.status(500).send({\n+      message:\n+        err.message || \"Some error occurred while creating the user.\"\n+    })\n+  \n }\n"
+                },
+                {
+                    "date": 1691153117532,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,6 +11,7 @@\n     res.status(500).send({\n       message:\n         err.message || \"Some error occurred while creating the user.\"\n     })\n+  }\n   \n }\n"
+                },
+                {
+                    "date": 1691153128642,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,13 +5,11 @@\n const message = db.message\n \n exports.create = async (req, res) => {\n   try {\n-    \n+    const {}\n   } catch (err) {\n     res.status(500).send({\n-      message:\n-        err.message || \"Some error occurred while creating the user.\"\n+      message: err.message || \"Some error occurred while creating the user.\",\n     })\n   }\n-  \n }\n"
+                },
+                {
+                    "date": 1691153134213,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n const message = db.message\n \n exports.create = async (req, res) => {\n   try {\n-    const {}\n+    const {conver}\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153140481,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n const message = db.message\n \n exports.create = async (req, res) => {\n   try {\n-    const {conver}\n+    const {conversationId,}\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153147077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n const message = db.message\n \n exports.create = async (req, res) => {\n   try {\n-    const {conversationId,}\n+    const {conversationId,senderId}\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153153444,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n const message = db.message\n \n exports.create = async (req, res) => {\n   try {\n-    const {conversationId,senderId}\n+    const {conversationId,senderId,message,}\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153161032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n const message = db.message\n \n exports.create = async (req, res) => {\n   try {\n-    const {conversationId,senderId,message,}\n+    const {conversationId,senderId,message,receiver}\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153171100,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n const message = db.message\n \n exports.create = async (req, res) => {\n   try {\n-    const {conversationId,senderId,message,receiver}\n+    const {conversationId,senderId,message,receiverId = \"\"} = await\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153179102,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,10 @@\n const message = db.message\n \n exports.create = async (req, res) => {\n   try {\n-    const {conversationId,senderId,message,receiverId = \"\"} = await\n+    const { conversationId, senderId, message, receiverId = \"\" } = req.bo\n+    \n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153184457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,11 @@\n const message = db.message\n \n exports.create = async (req, res) => {\n   try {\n-    const { conversationId, senderId, message, receiverId = \"\" } = req.bo\n+    const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     \n+    \n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153245462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n exports.create = async (req, res) => {\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     \n-    \n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153250969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n exports.create = async (req, res) => {\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n-    \n+    if(!senderId)\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153256770,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n exports.create = async (req, res) => {\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n-    if(!senderId)\n+    if(!senderId || !message)\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153262626,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n exports.create = async (req, res) => {\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n-    if(!senderId || !message)\n+    if(!senderId || !message) return res.status(\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153269386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n exports.create = async (req, res) => {\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n-    if(!senderId || !message) return res.status(\n+    if(!senderId || !message) return res.status(400).\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153277834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n exports.create = async (req, res) => {\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n-    if(!senderId || !message) return res.status(400).\n+    if(!senderId || !message) return res.status(400).send(\"Please fill \")\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153288313,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n exports.create = async (req, res) => {\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n-    if(!senderId || !message) return res.status(400).send(\"Please fill \")\n+    if(!senderId || !message) return res.status(400).send(\"Please fill all the required \")\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153297098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,10 @@\n \n exports.create = async (req, res) => {\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n-    if(!senderId || !message) return res.status(400).send(\"Please fill all the required \")\n+    if (!senderId || !message) return res.status(400).send(\"Please fill all the required fields\")\n+    if()\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153304514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n exports.create = async (req, res) => {\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     if (!senderId || !message) return res.status(400).send(\"Please fill all the required fields\")\n-    if()\n+    if(conversationId === 'new')\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153309570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n exports.create = async (req, res) => {\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     if (!senderId || !message) return res.status(400).send(\"Please fill all the required fields\")\n-    if(conversationId === 'new')\n+    if(conversationId === 'new' && !receiverId) return res.status(\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153314975,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n exports.create = async (req, res) => {\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     if (!senderId || !message) return res.status(400).send(\"Please fill all the required fields\")\n-    if(conversationId === 'new' && !receiverId) return res.status(\n+    if(conversationId === 'new' && receiverId) return res.status(\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153320071,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,10 @@\n exports.create = async (req, res) => {\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     if (!senderId || !message) return res.status(400).send(\"Please fill all the required fields\")\n-    if(conversationId === 'new' && receiverId) return res.status(\n+    if (conversationId === 'new' && receiverId) {\n+      return res.status(\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153328668,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,10 @@\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     if (!senderId || !message) return res.status(400).send(\"Please fill all the required fields\")\n     if (conversationId === 'new' && receiverId) {\n-      return res.status(\n+      \n+    }\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n     })\n"
+                },
+                {
+                    "date": 1691153344461,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     if (!senderId || !message) return res.status(400).send(\"Please fill all the required fields\")\n     if (conversationId === 'new' && receiverId) {\n-      \n+      c\n     }\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n"
+                },
+                {
+                    "date": 1691153350969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     if (!senderId || !message) return res.status(400).send(\"Please fill all the required fields\")\n     if (conversationId === 'new' && receiverId) {\n-      c\n+      const newConversation = conversation\n     }\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n"
+                },
+                {
+                    "date": 1691153356669,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     if (!senderId || !message) return res.status(400).send(\"Please fill all the required fields\")\n     if (conversationId === 'new' && receiverId) {\n-      const newConversation = conversation\n+      const newConversation = \n     }\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n"
+                },
+                {
+                    "date": 1691153361983,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     if (!senderId || !message) return res.status(400).send(\"Please fill all the required fields\")\n     if (conversationId === 'new' && receiverId) {\n-      const newConversation = \n+      const newConversation = new Conversations\n     }\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n"
+                },
+                {
+                    "date": 1691153368830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,11 @@\n   try {\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     if (!senderId || !message) return res.status(400).send(\"Please fill all the required fields\")\n     if (conversationId === 'new' && receiverId) {\n-      const newConversation = new Conversations\n+      const newConversation = new Conversations({\n+        mem\n+      })\n     }\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n"
+                },
+                {
+                    "date": 1691153374838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     if (!senderId || !message) return res.status(400).send(\"Please fill all the required fields\")\n     if (conversationId === 'new' && receiverId) {\n       const newConversation = new Conversations({\n-        mem\n+        members\n       })\n     }\n   } catch (err) {\n     res.status(500).send({\n"
+                },
+                {
+                    "date": 1691153380526,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     if (!senderId || !message) return res.status(400).send(\"Please fill all the required fields\")\n     if (conversationId === 'new' && receiverId) {\n       const newConversation = new Conversations({\n-        members\n+        members: []\n       })\n     }\n   } catch (err) {\n     res.status(500).send({\n"
+                },
+                {
+                    "date": 1691153388441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     if (!senderId || !message) return res.status(400).send(\"Please fill all the required fields\")\n     if (conversationId === 'new' && receiverId) {\n       const newConversation = new Conversations({\n-        members: []\n+        members: [send]\n       })\n     }\n   } catch (err) {\n     res.status(500).send({\n"
+                },
+                {
+                    "date": 1691153394862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     const { conversationId, senderId, message, receiverId = \"\" } = req.body\n     if (!senderId || !message) return res.status(400).send(\"Please fill all the required fields\")\n     if (conversationId === 'new' && receiverId) {\n       const newConversation = new Conversations({\n-        members: [send]\n+        members: [senderId, receiverId],\n       })\n     }\n   } catch (err) {\n     res.status(500).send({\n"
+                },
+                {
+                    "date": 1691153401170,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     if (!senderId || !message)\n       return res.status(400).send(\"Please fill all the required fields\")\n     if (conversationId === \"new\" && receiverId) {\n       const newConversation = new Conversations({\n-        members: [senderId, receiverId],\n+        members: [senderId, receiverId]\n       })\n     }\n   } catch (err) {\n     res.status(500).send({\n"
+                },
+                {
+                    "date": 1691153536551,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,10 @@\n       const newConversation = new Conversation({\n         members: [senderId, receiverId],\n       })\n       await newConversation.save()\n-      const message = new Message({ conversationId: newConversationId._id, senderId, receiverId,message })\n+      const message = new Message({ conversationId: newConversationId._id, senderId, receiverId, message })\n+      \n     }\n   } catch (err) {\n     res.status(500).send({\n       message: err.message || \"Some error occurred while creating the user.\",\n"
+                }
+            ],
+            "date": 1691152434792,
+            "name": "Commit-0",
+            "content": "const "
+        }
+    ]
+}

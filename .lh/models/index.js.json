@@ -1,0 +1,46 @@
+{
+    "sourceFile": "models/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1686980601041,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1686980608323,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \n db.user = require(\"./user.model\");\n db.role = require(\"./role.model\");\n db.refreshToken = require(\"./refreshToken.model\");\n+db.tutorials\n \n-\n db.ROLES = [\"user\", \"admin\", \"branchadmin\", \"superadmin\", \"staffaccount\", \"operationaladmin\"];\n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1686980613483,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \n db.user = require(\"./user.model\");\n db.role = require(\"./role.model\");\n db.refreshToken = require(\"./refreshToken.model\");\n-db.tutorials\n+db.tutorials = require\n \n db.ROLES = [\"user\", \"admin\", \"branchadmin\", \"superadmin\", \"staffaccount\", \"operationaladmin\"];\n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1686980625635,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \n db.user = require(\"./user.model\");\n db.role = require(\"./role.model\");\n db.refreshToken = require(\"./refreshToken.model\");\n-db.tutorials = require\n+db.tutorials = require(\"./tutorial.model\")\n \n db.ROLES = [\"user\", \"admin\", \"branchadmin\", \"superadmin\", \"staffaccount\", \"operationaladmin\"];\n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1686981244032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \n db.user = require(\"./user.model\");\n db.role = require(\"./role.model\");\n db.refreshToken = require(\"./refreshToken.model\");\n-db.tutorials = require(\"./tutorial.model\")\n+db.tutorial = require(\"./tutorial.model\")\n \n db.ROLES = [\"user\", \"admin\", \"branchadmin\", \"superadmin\", \"staffaccount\", \"operationaladmin\"];\n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1686983686661,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n db.user = require(\"./user.model\");\n db.role = require(\"./role.model\");\n db.refreshToken = require(\"./refreshToken.model\");\n db.tutorial = require(\"./tutorial.model\")\n+db.\n \n db.ROLES = [\"user\", \"admin\", \"branchadmin\", \"superadmin\", \"staffaccount\", \"operationaladmin\"];\n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1686983694303,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n db.user = require(\"./user.model\");\n db.role = require(\"./role.model\");\n db.refreshToken = require(\"./refreshToken.model\");\n db.tutorial = require(\"./tutorial.model\")\n-db.todo = require\n+db.todo = require()\n \n db.ROLES = [\"user\", \"admin\", \"branchadmin\", \"superadmin\", \"staffaccount\", \"operationaladmin\"];\n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1686991733338,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,18 @@\n+const mongoose = require('mongoose');\n+mongoose.Promise = global.Promise;\n+\n+const db = {};\n+// console.log(db)\n+\n+db.mongoose = mongoose;\n+\n+db.user = require(\"./user.model\");\n+db.role = require(\"./role.model\");\n+db.refreshToken = require(\"./refreshToken.model\");\n+db.tutorial = require(\"./tutorial.model\")\n+db.todo = require(\"./todo.model\")\n+db.tag = require(\"./tag.model\")\n+\n+db.ROLES = [\"user\", \"admin\", \"branchadmin\", \"superadmin\", \"staffaccount\", \"operationaladmin\"];\n+\n+module.exports = db;\n"
+                }
+            ],
+            "date": 1686980601041,
+            "name": "Commit-0",
+            "content": "const mongoose = require('mongoose');\nmongoose.Promise = global.Promise;\n\nconst db = {};\n\ndb.mongoose = mongoose;\n\ndb.user = require(\"./user.model\");\ndb.role = require(\"./role.model\");\ndb.refreshToken = require(\"./refreshToken.model\");\n\n\ndb.ROLES = [\"user\", \"admin\", \"branchadmin\", \"superadmin\", \"staffaccount\", \"operationaladmin\"];\n\nmodule.exports = db;\n"
+        }
+    ]
+}

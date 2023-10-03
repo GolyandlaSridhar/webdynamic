@@ -1,0 +1,50 @@
+{
+    "sourceFile": "controllers/auth.controller.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1687152474165,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1687152480070,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -89,10 +89,9 @@\n           message: \"Invalid Password!\",\n         });\n       }\n \n-      let token = jwt.sign({ id: user.id }, config.secret, { expiresIn: config.jwtExpiration,\n-      });\n+      let token = jwt.sign({ id: user.id }, config.secret, { expiresIn: config.jwtExpiration });\n \n       let refreshToken = await RefreshToken.createToken(user);\n \n       let authorities = [];\n"
+                },
+                {
+                    "date": 1687152514085,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -89,9 +89,9 @@\n           message: \"Invalid Password!\",\n         });\n       }\n \n-      let token = jwt.sign({ id: user.id }, config.secret, { expiresIn: config.jwtExpiration });\n+      let token = jwt.sign({ _id: user.id }, config.secret, { expiresIn: config.jwtExpiration });\n \n       let refreshToken = await RefreshToken.createToken(user);\n \n       let authorities = [];\n"
+                },
+                {
+                    "date": 1687152521838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -89,9 +89,9 @@\n           message: \"Invalid Password!\",\n         });\n       }\n \n-      let token = jwt.sign({ _id: user.id }, config.secret, { expiresIn: config.jwtExpiration });\n+      let token = jwt.sign({ _id: user.id, email:  }, config.secret, { expiresIn: config.jwtExpiration });\n \n       let refreshToken = await RefreshToken.createToken(user);\n \n       let authorities = [];\n"
+                },
+                {
+                    "date": 1687152540134,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -89,9 +89,9 @@\n           message: \"Invalid Password!\",\n         });\n       }\n \n-      let token = jwt.sign({ _id: user.id, email:  }, config.secret, { expiresIn: config.jwtExpiration });\n+      let token = jwt.sign({ _id: user.id, username:  }, config.secret, { expiresIn: config.jwtExpiration });\n \n       let refreshToken = await RefreshToken.createToken(user);\n \n       let authorities = [];\n"
+                },
+                {
+                    "date": 1687152548153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -89,9 +89,9 @@\n           message: \"Invalid Password!\",\n         });\n       }\n \n-      let token = jwt.sign({ _id: user.id, username:  }, config.secret, { expiresIn: config.jwtExpiration });\n+      let token = jwt.sign({ _id: user.id, username:   }, config.secret, { expiresIn: config.jwtExpiration });\n \n       let refreshToken = await RefreshToken.createToken(user);\n \n       let authorities = [];\n"
+                },
+                {
+                    "date": 1687152555124,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -89,9 +89,9 @@\n           message: \"Invalid Password!\",\n         });\n       }\n \n-      let token = jwt.sign({ _id: user.id, username:   }, config.secret, { expiresIn: config.jwtExpiration });\n+      let token = jwt.sign({ _id: user.id, username: user.username  }, config.secret, { expiresIn: config.jwtExpiration });\n \n       let refreshToken = await RefreshToken.createToken(user);\n \n       let authorities = [];\n"
+                },
+                {
+                    "date": 1687153908927,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -89,9 +89,9 @@\n           message: \"Invalid Password!\",\n         });\n       }\n \n-      let token = jwt.sign({ _id: user.id, username: user.username  }, config.secret, { expiresIn: config.jwtExpiration });\n+      let token = jwt.sign({ id: user.id }, config.secret, { expiresIn: config.jwtExpiration });\n \n       let refreshToken = await RefreshToken.createToken(user);\n \n       let authorities = [];\n"
+                },
+                {
+                    "date": 1687155307638,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-const config = require(\"../config/auth.config\");\n+const config = require(\"../config/auth.config.js\");\n const db = require(\"../models\");\n const { user: User, role: Role, refreshToken: RefreshToken } = db;\n \n var jwt = require(\"jsonwebtoken\");\n"
+                }
+            ],
+            "date": 1687152474164,
+            "name": "Commit-0",
+            "content": "const config = require(\"../config/auth.config\");\nconst db = require(\"../models\");\nconst { user: User, role: Role, refreshToken: RefreshToken } = db;\n\nvar jwt = require(\"jsonwebtoken\");\nvar bcrypt = require(\"bcryptjs\");\n\nexports.signup = (req, res) => {\n  const user = new User({\n    username: req.body.username,\n    email: req.body.email,\n    password: bcrypt.hashSync(req.body.password, 8),\n    firstname: req.body.firstname,\n    lastname: req.body.lastname,\n  });\n\n  user.save((err, user) => {\n    if (err) {\n      res.status(500).send({ message: err });\n      return;\n    }\n\n    if (req.body.roles) {\n      Role.find(\n        {\n          name: { $in: req.body.roles },\n        },\n        (err, roles) => {\n          if (err) {\n            res.status(500).send({ message: err });\n            return;\n          }\n\n          user.roles = roles.map((role) => role._id);\n          user.save((err) => {\n            if (err) {\n              res.status(500).send({ message: err });\n              return;\n            }\n\n            res.send({ message: \"User was registered successfully!\" });\n          });\n        }\n      );\n    } else {\n      Role.findOne({ name: \"user\" }, (err, role) => {\n        if (err) {\n          res.status(500).send({ message: err });\n          return;\n        }\n\n        user.roles = [role._id];\n        user.save((err) => {\n          if (err) {\n            res.status(500).send({ message: err });\n            return;\n          }\n\n          res.send({ message: \"User was registered successfully!\" });\n        });\n      });\n    }\n  });\n};\n\nexports.signin = (req, res) => {\n  User.findOne({\n    username: req.body.username,\n  })\n    .populate(\"roles\", \"-__v\")\n    .exec(async (err, user) => {\n      if (err) {\n        res.status(500).send({ message: err });\n        return;\n      }\n\n      if (!user) {\n        return res.status(404).send({ message: \"User Not found.\" });\n      }\n\n      let passwordIsValid = bcrypt.compareSync(\n        req.body.password,\n        user.password\n      );\n\n      if (!passwordIsValid) {\n        return res.status(401).send({\n          accessToken: null,\n          message: \"Invalid Password!\",\n        });\n      }\n\n      let token = jwt.sign({ id: user.id }, config.secret, { expiresIn: config.jwtExpiration,\n      });\n\n      let refreshToken = await RefreshToken.createToken(user);\n\n      let authorities = [];\n\n      for (let i = 0; i < user.roles.length; i++) {\n        authorities.push(\"ROLE_\" + user.roles[i].name.toUpperCase());\n      }\n      res.status(200).send({\n        id: user._id,\n        firstname: user.firstname,\n        lastname: user.lastname,\n        username: user.username,\n        email: user.email,\n        roles: authorities,\n        accessToken: token,\n        refreshToken: refreshToken,\n      });\n    });\n};\n\n\nexports.refreshToken = async (req, res) => {\n  const { refreshToken: requestToken } = req.body;\n\n  if (requestToken == null) {\n    return res.status(403).json({ message: \"Refresh Token is required!\" });\n  }\n\n  try {\n    let refreshToken = await RefreshToken.findOne({ token: requestToken });\n\n    if (!refreshToken) {\n      res.status(403).json({ message: \"Refresh token is not in database!\" });\n      return;\n    }\n\n    if (RefreshToken.verifyExpiration(refreshToken)) {\n      RefreshToken.findByIdAndRemove(refreshToken._id, { useFindAndModify: false }).exec();\n      \n      res.status(403).json({\n        message: \"Refresh token was expired. Please make a new signin request\",\n      });\n      return;\n    }\n\n    let newAccessToken = jwt.sign({ id: refreshToken.user._id }, config.secret, {\n      expiresIn: config.jwtExpiration,\n    });\n\n    return res.status(200).json({\n      accessToken: newAccessToken,\n      refreshToken: refreshToken.token,\n    });\n  } catch (err) {\n    return res.status(500).send({ message: err });\n  }\n};\n\nexports.signout = async (req, res) => {\n  try {\n    req.session = null;\n    return res.status(200).send({ message: \"You've been signed out!\" });\n  } catch (err) {\n    this.next(err);\n  }\n};\n"
+        }
+    ]
+}

@@ -1,0 +1,1002 @@
+{
+    "sourceFile": "controllers/user.controller.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 246,
+            "patches": [
+                {
+                    "date": 1693230303249,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1693230316550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \n \n // Retrieve all Tutorials from the database.\n exports.findAll = (req, res) => {\n-  const title = req.query.title\n+  const user = req.query.title\n   var condition = title ? { title: { $regex: new RegExp(title), $options: \"i\" } } : {}\n \n   Tutorial.find(condition)\n     .then(data => {\n"
+                },
+                {
+                    "date": 1693230323144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \n \n // Retrieve all Tutorials from the database.\n exports.findAll = (req, res) => {\n-  const user = req.query.title\n+  const userId = req.query.user\n   var condition = title ? { title: { $regex: new RegExp(title), $options: \"i\" } } : {}\n \n   Tutorial.find(condition)\n     .then(data => {\n"
+                },
+                {
+                    "date": 1693230344275,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,12 @@\n \n \n // Retrieve all Tutorials from the database.\n exports.findAll = (req, res) => {\n-  const userId = req.query.user\n-  var condition = title ? { title: { $regex: new RegExp(title), $options: \"i\" } } : {}\n+  const userId = req.query.userId\n+  var condition = userId\n+    ? { title: { $regex: new RegExp(title), $options: \"i\" } }\n+    : {}\n \n   Tutorial.find(condition)\n     .then(data => {\n       res.send(data)\n"
+                },
+                {
+                    "date": 1693230349880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,9 @@\n \n // Retrieve all Tutorials from the database.\n exports.findAll = (req, res) => {\n   const userId = req.query.userId\n-  var condition = userId\n-    ? { title: { $regex: new RegExp(title), $options: \"i\" } }\n+  var condition = userId ? { title: { $regex: new RegExp(title), $options: \"i\" } }\n     : {}\n \n   Tutorial.find(condition)\n     .then(data => {\n"
+                },
+                {
+                    "date": 1693230400087,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,9 @@\n \n // Retrieve all Tutorials from the database.\n exports.findAll = (req, res) => {\n   const userId = req.query.userId\n-  var condition = userId ? { title: { $regex: new RegExp(title), $options: \"i\" } }\n-    : {}\n+  var condition = userId ? { title: { $regex: new RegExp(title), $options: \"i\" } } : {}\n \n   Tutorial.find(condition)\n     .then(data => {\n       res.send(data)\n"
+                },
+                {
+                    "date": 1693230406303,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,11 @@\n \n // Retrieve all Tutorials from the database.\n exports.findAll = (req, res) => {\n   const userId = req.query.userId\n-  var condition = userId ? { title: { $regex: new RegExp(title), $options: \"i\" } } : {}\n+  var condition = userId\n+    ? { title: { $regex: new RegExp(title), $options: \"i\" } }\n+    : {}\n \n   Tutorial.find(condition)\n     .then(data => {\n       res.send(data)\n"
+                },
+                {
+                    "date": 1693230433823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,47 +1,48 @@\n+const db = require(\"../models/index.js\")\n+\n exports.allAccess = (req, res) => {\n-  res.status(200).send(\"Public Content.\");\n-};\n+  res.status(200).send(\"Public Content.\")\n+}\n \n-\n // Retrieve all Tutorials from the database.\n exports.findAll = (req, res) => {\n   const userId = req.query.userId\n   var condition = userId\n-    ? { title: { $regex: new RegExp(title), $options: \"i\" } }\n+    ? { userId: { $regex: new RegExp(userId), $options: \"i\" } }\n     : {}\n \n   Tutorial.find(condition)\n-    .then(data => {\n+    .then((data) => {\n       res.send(data)\n     })\n-    .catch(err => {\n+    .catch((err) => {\n       res.status(500).send({\n         message:\n-          err.message || \"Some error occurred while retrieving tutorials.\"\n+          err.message || \"Some error occurred while retrieving tutorials.\",\n       })\n     })\n }\n \n exports.userBoard = (req, res) => {\n-  res.status(200).send(\"User Content.\");\n-};\n+  res.status(200).send(\"User Content.\")\n+}\n \n exports.adminBoard = (req, res) => {\n-  res.status(200).send(\"Admin Content.\");\n-};\n+  res.status(200).send(\"Admin Content.\")\n+}\n \n exports.superadminBoard = (req, res) => {\n-  res.status(200).send(\"Super Admin Content.\");\n-};\n+  res.status(200).send(\"Super Admin Content.\")\n+}\n \n exports.branchAdminBoard = (req, res) => {\n-  res.status(200).send(\"Branch Admin Content.\");\n-};\n+  res.status(200).send(\"Branch Admin Content.\")\n+}\n \n exports.staffAccountBoard = (req, res) => {\n-  res.status(200).send(\"Staff Account Content.\");\n-};\n+  res.status(200).send(\"Staff Account Content.\")\n+}\n \n exports.operationalAdminBoard = (req, res) => {\n-  res.status(200).send(\"Operational Admin Content.\");\n-};\n+  res.status(200).send(\"Operational Admin Content.\")\n+}\n"
+                },
+                {
+                    "date": 1693230445672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n const db = require(\"../models/index.js\")\n+const mongoose = require(\"mongoose\")\n \n exports.allAccess = (req, res) => {\n   res.status(200).send(\"Public Content.\")\n }\n"
+                },
+                {
+                    "date": 1693230452904,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n const db = require(\"../models/index.js\")\n const mongoose = require(\"mongoose\")\n+const User = db.user\n \n exports.allAccess = (req, res) => {\n   res.status(200).send(\"Public Content.\")\n }\n"
+                },
+                {
+                    "date": 1693230460671,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   var condition = userId\n     ? { userId: { $regex: new RegExp(userId), $options: \"i\" } }\n     : {}\n \n-  Tutorial.find(condition)\n+  User.find(condition)\n     .then((data) => {\n       res.send(data)\n     })\n     .catch((err) => {\n"
+                },
+                {
+                    "date": 1693230466460,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n     })\n     .catch((err) => {\n       res.status(500).send({\n         message:\n-          err.message || \"Some error occurred while retrieving tutorials.\",\n+          err.message || \"Some error occurred while retrieving Users.\",\n       })\n     })\n }\n \n"
+                },
+                {
+                    "date": 1693230498216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n exports.allAccess = (req, res) => {\n   res.status(200).send(\"Public Content.\")\n }\n \n-// Retrieve all Tutorials from the database.\n+// Retrieve all users from the database.\n exports.findAll = (req, res) => {\n   const userId = req.query.userId\n   var condition = userId\n     ? { userId: { $regex: new RegExp(userId), $options: \"i\" } }\n@@ -18,10 +18,9 @@\n       res.send(data)\n     })\n     .catch((err) => {\n       res.status(500).send({\n-        message:\n-          err.message || \"Some error occurred while retrieving Users.\",\n+        message: err.message || \"Some error occurred while retrieving Users.\",\n       })\n     })\n }\n \n"
+                },
+                {
+                    "date": 1693230739538,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   const userId = req.query.userId\n   var condition = userId\n     ? { userId: { $regex: new RegExp(userId), $options: \"i\" } }\n     : {}\n-\n+console.log(condition\n   User.find(condition)\n     .then((data) => {\n       res.send(data)\n     })\n"
+                },
+                {
+                    "date": 1693230768020,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,12 +8,13 @@\n \n // Retrieve all users from the database.\n exports.findAll = (req, res) => {\n   const userId = req.query.userId\n+  con\n   var condition = userId\n     ? { userId: { $regex: new RegExp(userId), $options: \"i\" } }\n     : {}\n-console.log(condition\n+  console.log(condition)\n   User.find(condition)\n     .then((data) => {\n       res.send(data)\n     })\n"
+                },
+                {
+                    "date": 1693230773324,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n // Retrieve all users from the database.\n exports.findAll = (req, res) => {\n   const userId = req.query.userId\n-  con\n+  cl\n   var condition = userId\n     ? { userId: { $regex: new RegExp(userId), $options: \"i\" } }\n     : {}\n   console.log(condition)\n"
+                },
+                {
+                    "date": 1693230778696,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n // Retrieve all users from the database.\n exports.findAll = (req, res) => {\n   const userId = req.query.userId\n-  cl\n+  console.log(userId)\n   var condition = userId\n     ? { userId: { $regex: new RegExp(userId), $options: \"i\" } }\n     : {}\n   console.log(condition)\n"
+                },
+                {
+                    "date": 1693232139647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,14 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.findAll = (req, res) => {\n-  const userId = req.query.userId\n-  console.log(userId)\n-  var condition = userId\n-    ? { userId: { $regex: new RegExp(userId), $options: \"i\" } }\n-    : {}\n-  console.log(condition)\n+  \n   User.find(condition)\n     .then((data) => {\n       res.send(data)\n     })\n"
+                },
+                {
+                    "date": 1693232148795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,10 @@\n   res.status(200).send(\"Public Content.\")\n }\n \n // Retrieve all users from the database.\n-exports.findAll = (req, res) => {\n-  \n-  User.find(condition)\n+exports.findAll = (req, res) => {  \n+  User.find({})\n     .then((data) => {\n       res.send(data)\n     })\n     .catch((err) => {\n"
+                },
+                {
+                    "date": 1693232154111,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.findAll = (req, res) => {  \n-  User.find({})\n+  User.find({}, (err, user) => {)\n     .then((data) => {\n       res.send(data)\n     })\n     .catch((err) => {\n"
+                },
+                {
+                    "date": 1693232160145,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,11 @@\n }\n \n // Retrieve all users from the database.\n exports.findAll = (req, res) => {  \n-  User.find({}, (err, user) => {)\n+  User.find({}, (err, user) => {\n+      \n+    )\n     .then((data) => {\n       res.send(data)\n     })\n     .catch((err) => {\n"
+                },
+                {
+                    "date": 1693232169089,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,11 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.findAll = (req, res) => {  \n-  User.find({}, (err, user) => {\n-      \n-    )\n+  User.find({})\n     .then((data) => {\n       res.send(data)\n     })\n     .catch((err) => {\n"
+                },
+                {
+                    "date": 1693232318366,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,12 @@\n   res.status(200).send(\"Public Content.\")\n }\n \n // Retrieve all users from the database.\n-exports.findAll = (req, res) => {  \n+exports.findAll = (req, res) => {\n   User.find({})\n     .then((data) => {\n+      cl\n       res.send(data)\n     })\n     .catch((err) => {\n       res.status(500).send({\n"
+                },
+                {
+                    "date": 1693232734570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,18 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.findAll = (req, res) => {\n-  User.find({})\n-    .then((data) => {\n-      cl\n-      res.send(data)\n-    })\n-    .catch((err) => {\n-      res.status(500).send({\n-        message: err.message || \"Some error occurred while retrieving Users.\",\n-      })\n-    })\n+  \n }\n \n exports.userBoard = (req, res) => {\n   res.status(200).send(\"User Content.\")\n"
+                },
+                {
+                    "date": 1693232746451,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   res.status(200).send(\"Public Content.\")\n }\n \n // Retrieve all users from the database.\n-exports.findAll = (req, res) => {\n+exports.findAll = asy(req, res) => {\n   \n }\n \n exports.userBoard = (req, res) => {\n"
+                },
+                {
+                    "date": 1693232753003,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,10 @@\n   res.status(200).send(\"Public Content.\")\n }\n \n // Retrieve all users from the database.\n-exports.findAll = asy(req, res) => {\n-  \n+exports.findAll = async (req, res) => {\n+  tr\n }\n \n exports.userBoard = (req, res) => {\n   res.status(200).send(\"User Content.\")\n"
+                },
+                {
+                    "date": 1693232758649,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,11 @@\n }\n \n // Retrieve all users from the database.\n exports.findAll = async (req, res) => {\n-  tr\n+  try {\n+\n+  } catch (err) {\n }\n \n exports.userBoard = (req, res) => {\n   res.status(200).send(\"User Content.\")\n"
+                },
+                {
+                    "date": 1693232769790,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n exports.findAll = async (req, res) => {\n   try {\n \n   } catch (err) {\n+    e\n }\n \n exports.userBoard = (req, res) => {\n   res.status(200).send(\"User Content.\")\n"
+                },
+                {
+                    "date": 1693232780267,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n exports.findAll = async (req, res) => {\n   try {\n \n   } catch (err) {\n-    e\n+    res.status(400).send\n }\n \n exports.userBoard = (req, res) => {\n   res.status(200).send(\"User Content.\")\n"
+                },
+                {
+                    "date": 1693232785976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n exports.findAll = async (req, res) => {\n   try {\n \n   } catch (err) {\n-    res.status(400).send\n+    res.status(400).send({ })\n }\n \n exports.userBoard = (req, res) => {\n   res.status(200).send(\"User Content.\")\n"
+                },
+                {
+                    "date": 1693232794417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,11 +8,11 @@\n \n // Retrieve all users from the database.\n exports.findAll = async (req, res) => {\n   try {\n-\n+const \n   } catch (err) {\n-    res.status(400).send({ })\n+    res.status(400).send({ message: err.message})\n }\n \n exports.userBoard = (req, res) => {\n   res.status(200).send(\"User Content.\")\n"
+                },
+                {
+                    "date": 1693232812391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n // Retrieve all users from the database.\n exports.findAll = async (req, res) => {\n   try {\n-const \n+const allUsers = await\n   } catch (err) {\n     res.status(400).send({ message: err.message})\n }\n \n"
+                },
+                {
+                    "date": 1693232822553,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n // Retrieve all users from the database.\n exports.findAll = async (req, res) => {\n   try {\n-const allUsers = await\n+const allUsers = await U\n   } catch (err) {\n     res.status(400).send({ message: err.message})\n }\n \n"
+                },
+                {
+                    "date": 1693232828126,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n // Retrieve all users from the database.\n exports.findAll = async (req, res) => {\n   try {\n-const allUsers = await U\n+    const allUsers = await User.find({})\n   } catch (err) {\n     res.status(400).send({ message: err.message})\n }\n \n"
+                },
+                {
+                    "date": 1693232834334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n // Retrieve all users from the database.\n exports.findAll = async (req, res) => {\n   try {\n     const allUsers = await User.find({})\n+    res.\n   } catch (err) {\n     res.status(400).send({ message: err.message})\n }\n \n"
+                },
+                {
+                    "date": 1693232840383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n // Retrieve all users from the database.\n exports.findAll = async (req, res) => {\n   try {\n     const allUsers = await User.find({})\n-    res.\n+    res.s\n   } catch (err) {\n     res.status(400).send({ message: err.message})\n }\n \n"
+                },
+                {
+                    "date": 1693232848737,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n // Retrieve all users from the database.\n exports.findAll = async (req, res) => {\n   try {\n     const allUsers = await User.find({})\n-    res.s\n+    res.st\n   } catch (err) {\n     res.status(400).send({ message: err.message})\n }\n \n"
+                },
+                {
+                    "date": 1693232863442,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n // Retrieve all users from the database.\n exports.findAll = async (req, res) => {\n   try {\n     const allUsers = await User.find({})\n-    res.st\n+    res.status(200).json(allUsers)\n   } catch (err) {\n     res.status(400).send({ message: err.message})\n }\n \n"
+                },
+                {
+                    "date": 1693232891625,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,10 @@\n   try {\n     const allUsers = await User.find({})\n     res.status(200).json(allUsers)\n   } catch (err) {\n-    res.status(400).send({ message: err.message})\n+    res.status(400).send({ message: err.message })\n+  }\n }\n \n exports.userBoard = (req, res) => {\n   res.status(200).send(\"User Content.\")\n"
+                },
+                {
+                    "date": 1693233007325,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   res.status(200).send(\"Public Content.\")\n }\n \n // Retrieve all users from the database.\n-exports.findAll = async (req, res) => {\n+exports.getAllUsers = async (req, res) => {\n   try {\n     const allUsers = await User.find({})\n     res.status(200).json(allUsers)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693233037299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   try {\n     const allUsers = await User.find({})\n     res.status(200).json(allUsers)\n   } catch (err) {\n-    res.status(400).send({ message: err.message })\n+    res.status(400).json({ message: err.message })\n   }\n }\n \n exports.userBoard = (req, res) => {\n"
+                },
+                {
+                    "date": 1693291958674,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n+  const \n   try {\n     const allUsers = await User.find({})\n     res.status(200).json(allUsers)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693291966299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  const \n+  const userId = req.params.id\n   try {\n     const allUsers = await User.find({})\n     res.status(200).json(allUsers)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693291971405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   const userId = req.params.id\n+  cl\n   try {\n     const allUsers = await User.find({})\n     res.status(200).json(allUsers)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693292073567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  const userId = req.params.id\n-  cl\n+  const userId = req.params._id\n+  console.log(userId)\n   try {\n     const allUsers = await User.find({})\n     res.status(200).json(allUsers)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693292146832,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  const userId = req.params._id\n+  const userId = req.params.id\n   console.log(userId)\n   try {\n     const allUsers = await User.find({})\n     res.status(200).json(allUsers)\n"
+                },
+                {
+                    "date": 1693292208830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  const userId = req.params.id\n+  const id = req.params.id\n   console.log(userId)\n   try {\n     const allUsers = await User.find({})\n     res.status(200).json(allUsers)\n"
+                },
+                {
+                    "date": 1693292280507,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  const id = req.params.id\n-  console.log(userId)\n+  const id = req.body.id\n+  console.log(id)\n   try {\n     const allUsers = await User.find({})\n     res.status(200).json(allUsers)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693292437090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n exports.getAllUsers = async (req, res) => {\n   const id = req.body.id\n   console.log(id)\n   try {\n-    const allUsers = await User.find({})\n+    const allUsers = await User.find({_})\n     res.status(200).json(allUsers)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693292450743,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n exports.getAllUsers = async (req, res) => {\n   const id = req.body.id\n   console.log(id)\n   try {\n-    const allUsers = await User.find({_})\n+    const allUsers = await User.find({_id: {$ne}})\n     res.status(200).json(allUsers)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693292456159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n exports.getAllUsers = async (req, res) => {\n   const id = req.body.id\n   console.log(id)\n   try {\n-    const allUsers = await User.find({_id: {$ne}})\n+    const allUsers = await User.find({_id: {$ne: }})\n     res.status(200).json(allUsers)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693292463031,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n exports.getAllUsers = async (req, res) => {\n   const id = req.body.id\n   console.log(id)\n   try {\n-    const allUsers = await User.find({_id: {$ne: }})\n+    const allUsers = await User.find({_id: {$ne: req.body.id}})\n     res.status(200).json(allUsers)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693292476593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,10 @@\n exports.getAllUsers = async (req, res) => {\n   const id = req.body.id\n   console.log(id)\n   try {\n-    const allUsers = await User.find({_id: {$ne: req.body.id}})\n+    const allUsers = await User.find({ _id: { $ne: req.body.id } })\n+    console.log()\n     res.status(200).json(allUsers)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693292500413,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   const id = req.body.id\n   console.log(id)\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.body.id } })\n-    console.log()\n+    console.log(allUsers)\n     res.status(200).json(allUsers)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693292517205,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,8 @@\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   const id = req.body.id\n-  console.log(id)\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.body.id } })\n     console.log(allUsers)\n     res.status(200).json(allUsers)\n"
+                },
+                {
+                    "date": 1693292522415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  const id = req.body.id\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.body.id } })\n     console.log(allUsers)\n     res.status(200).json(allUsers)\n"
+                },
+                {
+                    "date": 1693305388526,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.body.id } })\n-    console.log(allUsers)\n+    cl\n     res.status(200).json(allUsers)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693305394463,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.body.id } })\n-    cl\n+    console.log(allUsers.length)\n     res.status(200).json(allUsers)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693305404112,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,11 +7,12 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n+  cl\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.body.id } })\n-    console.log(allUsers.length)\n+    console.log(allUsers)\n     res.status(200).json(allUsers)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693305410709,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  cl\n+  console.log(req.body)\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.body.id } })\n     console.log(allUsers)\n     res.status(200).json(allUsers)\n"
+                },
+                {
+                    "date": 1693305417439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  console.log(req.body)\n+  console.log(req.body.id)\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.body.id } })\n     console.log(allUsers)\n     res.status(200).json(allUsers)\n"
+                },
+                {
+                    "date": 1693307611164,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  console.log(req.body.id)\n+  console.log(req.param.id)\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.body.id } })\n     console.log(allUsers)\n     res.status(200).json(allUsers)\n"
+                },
+                {
+                    "date": 1693307738407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   console.log(req.param.id)\n   try {\n-    const allUsers = await User.find({ _id: { $ne: req.body.id } })\n+    const allUsers = await User.find({ _id: { $ne: req.user } })\n     console.log(allUsers)\n     res.status(200).json(allUsers)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693307754022,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   console.log(req.param.id)\n   try {\n-    const allUsers = await User.find({ _id: { $ne: req.user } })\n+    const allUsers = await User.find({ _id: { $ne: req.userId } })\n     console.log(allUsers)\n     res.status(200).json(allUsers)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693307760288,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  console.log(req.param.id)\n+  console.log(req.userId)\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n     console.log(allUsers)\n     res.status(200).json(allUsers)\n"
+                },
+                {
+                    "date": 1693307797088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  console.log(req.userId)\n+  //console.log(req.userId)\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n     console.log(allUsers)\n     res.status(200).json(allUsers)\n"
+                },
+                {
+                    "date": 1693822115932,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  //console.log(req.userId)\n+  console.log(req.userId)\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n     console.log(allUsers)\n     res.status(200).json(allUsers)\n"
+                },
+                {
+                    "date": 1693822137273,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  console.log(req.userId)\n+  console.log(\"User Id : \" + req.userId)\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n     console.log(allUsers)\n     res.status(200).json(allUsers)\n"
+                },
+                {
+                    "date": 1693822148094,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  console.log(\"User Id : \" + req.userId)\n+  console.log(\"User Id in : \" + req.userId)\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n     console.log(allUsers)\n     res.status(200).json(allUsers)\n"
+                },
+                {
+                    "date": 1693822154441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  console.log(\"User Id in : \" + req.userId)\n+  console.log(\"User Id in User Controller : \" + req.userId)\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n     console.log(allUsers)\n     res.status(200).json(allUsers)\n"
+                },
+                {
+                    "date": 1693822376927,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  console.log(\"User Id in User Controller : \" + req.userId)\n+  //console.log(\"User Id in User Controller : \" + req.userId)\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n     console.log(allUsers)\n     res.status(200).json(allUsers)\n"
+                },
+                {
+                    "date": 1693822388538,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n exports.getAllUsers = async (req, res) => {\n   //console.log(\"User Id in User Controller : \" + req.userId)\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n-    console.log(allUsers)\n+    //console.log(allUsers)\n     res.status(200).json(allUsers)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693825966797,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n }\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n-  //console.log(\"User Id in User Controller : \" + req.userId)\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n     //console.log(allUsers)\n     res.status(200).json(allUsers)\n"
+                },
+                {
+                    "date": 1693826043636,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n const db = require(\"../models/index.js\")\n const mongoose = require(\"mongoose\")\n const User = db.user\n+const \n \n exports.allAccess = (req, res) => {\n   res.status(200).send(\"Public Content.\")\n }\n@@ -9,9 +10,8 @@\n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n-    //console.log(allUsers)\n     res.status(200).json(allUsers)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693826051766,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n const db = require(\"../models/index.js\")\n const mongoose = require(\"mongoose\")\n const User = db.user\n-const \n+const Conversation\n \n exports.allAccess = (req, res) => {\n   res.status(200).send(\"Public Content.\")\n }\n"
+                },
+                {
+                    "date": 1693826057309,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n const db = require(\"../models/index.js\")\n const mongoose = require(\"mongoose\")\n const User = db.user\n-const Conversation\n+const Conversation = db.conversation\n \n exports.allAccess = (req, res) => {\n   res.status(200).send(\"Public Content.\")\n }\n"
+                },
+                {
+                    "date": 1693826067944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,10 @@\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n-    const allUsers = await User.find({ _id: { $ne: req.userId } })\n-    res.status(200).json(allUsers)\n+    // const allUsers = await User.find({ _id: { $ne: req.userId } })\n+    // res.status(200).json(allUsers)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n }\n"
+                },
+                {
+                    "date": 1693826074245,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,15 @@\n exports.getAllUsers = async (req, res) => {\n   try {\n     // const allUsers = await User.find({ _id: { $ne: req.userId } })\n     // res.status(200).json(allUsers)\n+\n+    const conversation = await Conversation.find({\n+      members: {\n+        $in: [userId],\n+      },\n+    })\n+\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n }\n"
+                },
+                {
+                    "date": 1693826085401,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,8 @@\n       members: {\n         $in: [userId],\n       },\n     })\n-\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n }\n"
+                },
+                {
+                    "date": 1693826143651,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,25 @@\n       members: {\n         $in: [userId],\n       },\n     })\n+    const conversationUserData = Promise.all(\n+      conversation.map(async (conversation) => {\n+        const receiverId = conversation.members.find(\n+          (member) => member !== userId\n+        )\n+        const user = await User.findById(receiverId)\n+        return {\n+          user: {\n+            receiverId: user._id,\n+            email: user.email,\n+            username: user.username,\n+          },\n+          conversationId: conversation._id,\n+        }\n+      })\n+    )\n+    res.status(200).json(await conversationUserData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n }\n"
+                },
+                {
+                    "date": 1693826170501,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,10 +28,9 @@\n           user: {\n             receiverId: user._id,\n             email: user.email,\n             username: user.username,\n-          },\n-          conversationId: conversation._id,\n+          }\n         }\n       })\n     )\n     res.status(200).json(await conversationUserData)\n"
+                },
+                {
+                    "date": 1693826178652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n       members: {\n         $in: [userId],\n       },\n     })\n-    const conversationUserData = Promise.all(\n+    const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n         )\n"
+                },
+                {
+                    "date": 1693826208486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({\n       members: {\n-        $in: [userId],\n+        $in: [req.userId],\n       },\n     })\n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n@@ -28,13 +28,13 @@\n           user: {\n             receiverId: user._id,\n             email: user.email,\n             username: user.username,\n-          }\n+          },\n         }\n       })\n     )\n-    res.status(200).json(await conversationUserData)\n+    res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n }\n"
+                },
+                {
+                    "date": 1693826298825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,11 +13,9 @@\n     // const allUsers = await User.find({ _id: { $ne: req.userId } })\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({\n-      members: {\n-        $in: [req.userId],\n-      },\n+      { _id: { $ne: req.userId } }\n     })\n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n"
+                },
+                {
+                    "date": 1693826306554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({\n       { _id: { $ne: req.userId } }\n-    })\n+    )\n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n"
+                },
+                {
+                    "date": 1693826318180,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,9 @@\n   try {\n     // const allUsers = await User.find({ _id: { $ne: req.userId } })\n     // res.status(200).json(allUsers)\n \n-    const conversation = await Conversation.find({\n-      { _id: { $ne: req.userId } }\n+    const conversation = await Conversation.find({_id: { $ne: req.userId } }\n     )\n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n"
+                },
+                {
+                    "date": 1693826330722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,9 @@\n   try {\n     // const allUsers = await User.find({ _id: { $ne: req.userId } })\n     // res.status(200).json(allUsers)\n \n-    const conversation = await Conversation.find({_id: { $ne: req.userId } }\n-    )\n+    const conversation = await Conversation.find({_id: { $ne: req.userId } })\n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n"
+                },
+                {
+                    "date": 1693826338192,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,10 @@\n   try {\n     // const allUsers = await User.find({ _id: { $ne: req.userId } })\n     // res.status(200).json(allUsers)\n \n-    const conversation = await Conversation.find({_id: { $ne: req.userId } })\n+    const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n+    console.log(conversation\n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n"
+                },
+                {
+                    "date": 1693826384585,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,8 @@\n     // const allUsers = await User.find({ _id: { $ne: req.userId } })\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n-    console.log(conversation\n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n"
+                },
+                {
+                    "date": 1693826392098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n             email: user.email,\n             username: user.username,\n           },\n         }\n+        console.log(user)\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693826411537,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,8 @@\n             email: user.email,\n             username: user.username,\n           },\n         }\n-        console.log(user)\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693826444570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n-    // const allUsers = await User.find({ _id: { $ne: req.userId } })\n+    /const allUsers = await User.find({ _id: { $ne: req.userId } })\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     const userData = Promise.all(\n@@ -19,8 +19,9 @@\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n         )\n         const user = await User.findById(receiverId)\n+        console.log(user)\n         return {\n           user: {\n             receiverId: user._id,\n             email: user.email,\n"
+                },
+                {
+                    "date": 1693826450836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n-    /const allUsers = await User.find({ _id: { $ne: req.userId } })\n+    const allUsers = await User.find({ _id: { $ne: req.userId } })\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     const userData = Promise.all(\n"
+                },
+                {
+                    "date": 1693826470915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n+    console\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     const userData = Promise.all(\n"
+                },
+                {
+                    "date": 1693826478870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n-    console\n+    console.log(\"allUsers\"\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     const userData = Promise.all(\n"
+                },
+                {
+                    "date": 1693826485608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n-    console.log(\"allUsers\"\n+    console.log(\"allUsers : \" + allUsers\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     const userData = Promise.all(\n"
+                },
+                {
+                    "date": 1693826499586,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,12 +10,13 @@\n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n-    console.log(\"allUsers : \" + allUsers\n+    console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n+    console.log(\"allUsers : \" + allUsers)\n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n"
+                },
+                {
+                    "date": 1693826542572,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,10 @@\n     console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n-    console.log(\"allUsers : \" + allUsers)\n+    console.log(\"conversation : \" + conversation)\n+    \n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n"
+                },
+                {
+                    "date": 1693826561247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,14 +15,15 @@\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     console.log(\"conversation : \" + conversation)\n-    \n+\n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n         )\n+    console.log(\"conversation : \" + conversation)\n         const user = await User.findById(receiverId)\n         console.log(user)\n         return {\n           user: {\n"
+                },
+                {
+                    "date": 1693826566376,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n         )\n-    console.log(\"conversation : \" + conversation)\n+        console.log(\"receiverId : \" + receiverId)\n         const user = await User.findById(receiverId)\n         console.log(user)\n         return {\n           user: {\n"
+                },
+                {
+                    "date": 1693826586740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n-    console.log(\"allUsers : \" + allUsers)\n+    //console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     console.log(\"conversation : \" + conversation)\n"
+                },
+                {
+                    "date": 1693826696307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n-          (member) => member !== userId\n+          (member) => member !== requserId\n         )\n         console.log(\"receiverId : \" + receiverId)\n         const user = await User.findById(receiverId)\n         console.log(user)\n"
+                },
+                {
+                    "date": 1693826734033,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,11 +19,10 @@\n \n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n-          (member) => member !== requserId\n+          (member) => member !== req.userId\n         )\n-        console.log(\"receiverId : \" + receiverId)\n         const user = await User.findById(receiverId)\n         console.log(user)\n         return {\n           user: {\n"
+                },
+                {
+                    "date": 1693826758827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,8 @@\n     //console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n-    console.log(\"conversation : \" + conversation)\n \n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n"
+                },
+                {
+                    "date": 1693826766257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n         const user = await User.findById(receiverId)\n-        console.log(user)\n+        console.log(\"User : _user)\n         return {\n           user: {\n             receiverId: user._id,\n             email: user.email,\n"
+                },
+                {
+                    "date": 1693826773406,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n         const user = await User.findById(receiverId)\n-        console.log(\"User : _user)\n+        console.log(\"User : :user)\n         return {\n           user: {\n             receiverId: user._id,\n             email: user.email,\n"
+                },
+                {
+                    "date": 1693826778933,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n         const user = await User.findById(receiverId)\n-        console.log(\"User : :user)\n+        console.log(\"User : \" + user)\n         return {\n           user: {\n             receiverId: user._id,\n             email: user.email,\n"
+                },
+                {
+                    "date": 1693826808274,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        const user = await User.findById(receiverId)\n+        const user = await User.findById(!receiverId)\n         console.log(\"User : \" + user)\n         return {\n           user: {\n             receiverId: user._id,\n"
+                },
+                {
+                    "date": 1693826845146,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,15 +22,15 @@\n           (member) => member !== req.userId\n         )\n         const user = await User.findById(!receiverId)\n         console.log(\"User : \" + user)\n-        return {\n-          user: {\n-            receiverId: user._id,\n-            email: user.email,\n-            username: user.username,\n-          },\n-        }\n+        // return {\n+        //   user: {\n+        //     receiverId: user._id,\n+        //     email: user.email,\n+        //     username: user.username,\n+        //   },\n+        // }\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693826870838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        const user = await User.findById(!receiverId)\n+        const user = await User.find({ _id: { $ne: req.userId } })\n         console.log(\"User : \" + user)\n         // return {\n         //   user: {\n         //     receiverId: user._id,\n"
+                },
+                {
+                    "date": 1693826876906,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        const user = await User.find({ _id: { $ne: req.userId } })\n+        const user = await User.find({ _id: { $ne: receiverId } })\n         console.log(\"User : \" + user)\n         // return {\n         //   user: {\n         //     receiverId: user._id,\n"
+                },
+                {
+                    "date": 1693826908075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        const user = await User.find({ _id: { $ne: receiverId } })\n+        const user = await User.find({ _id: { $ne: [receiverId } })\n         console.log(\"User : \" + user)\n         // return {\n         //   user: {\n         //     receiverId: user._id,\n"
+                },
+                {
+                    "date": 1693826915748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        const user = await User.find({ _id: { $ne: [receiverId } })\n+        const user = await User.find({ _id: { $ne: [receiverId, req. } })\n         console.log(\"User : \" + user)\n         // return {\n         //   user: {\n         //     receiverId: user._id,\n"
+                },
+                {
+                    "date": 1693826949044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,10 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        const user = await User.find({ _id: { $ne: [receiverId, req. } })\n+        const user = await User.find({ _id: { $ne: \n+          receiverId, req.userId] } })\n         console.log(\"User : \" + user)\n         // return {\n         //   user: {\n         //     receiverId: user._id,\n"
+                },
+                {
+                    "date": 1693826958319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,10 +20,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        const user = await User.find({ _id: { $ne: \n-          receiverId, req.userId] } })\n+        const user = await User.find({ _id: { $ne: { receiverId, req.userId] } })\n         console.log(\"User : \" + user)\n         // return {\n         //   user: {\n         //     receiverId: user._id,\n"
+                },
+                {
+                    "date": 1693826964930,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        const user = await User.find({ _id: { $ne: { receiverId, req.userId] } })\n+        const user = await User.find({ _id: { $ne: { receiverId, req.userId } } })\n         console.log(\"User : \" + user)\n         // return {\n         //   user: {\n         //     receiverId: user._id,\n"
+                },
+                {
+                    "date": 1693827023464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        const user = await User.find({ _id: { $ne: { receiverId, req.userId } } })\n+        const user = await User.find({ _id: { $ne: [receiverId, req.userId] } })\n         console.log(\"User : \" + user)\n         // return {\n         //   user: {\n         //     receiverId: user._id,\n"
+                },
+                {
+                    "date": 1693827087579,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,11 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        const user = await User.find({ _id: { $ne: [receiverId, req.userId] } })\n+        const user = await allUsers.find({\n+          _id: { $ne: [receiverId, req.userId] },\n+        })\n         console.log(\"User : \" + user)\n         // return {\n         //   user: {\n         //     receiverId: user._id,\n"
+                },
+                {
+                    "date": 1693827094667,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,11 +20,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        const user = await allUsers.find({\n-          _id: { $ne: [receiverId, req.userId] },\n-        })\n+        const user = await User.find({ _id: { $ne: receiverId } })\n         console.log(\"User : \" + user)\n         // return {\n         //   user: {\n         //     receiverId: user._id,\n"
+                },
+                {
+                    "date": 1693827145382,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n-    //console.log(\"allUsers : \" + allUsers)\n+    console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n \n@@ -20,9 +20,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        const user = await User.find({ _id: { $ne: receiverId } })\n+        const user = await allUsers.find({ _id: { $ne: receiverId } })\n         console.log(\"User : \" + user)\n         // return {\n         //   user: {\n         //     receiverId: user._id,\n"
+                },
+                {
+                    "date": 1693827151128,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n+    console.log(\"allUsers : \" + allUsers)\n         const user = await allUsers.find({ _id: { $ne: receiverId } })\n         console.log(\"User : \" + user)\n         // return {\n         //   user: {\n"
+                },
+                {
+                    "date": 1693827284617,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,18 +20,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-    console.log(\"allUsers : \" + allUsers)\n-        const user = await allUsers.find({ _id: { $ne: receiverId } })\n-        console.log(\"User : \" + user)\n-        // return {\n-        //   user: {\n-        //     receiverId: user._id,\n-        //     email: user.email,\n-        //     username: user.username,\n-        //   },\n-        // }\n+        console.log(\"receiverId : \" + receiverId)\\\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693827299656,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,10 +20,13 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        console.log(\"receiverId : \" + receiverId)\\\n+        console.log(\"receiverId : \" + receiverId)\n       })\n+\n+\n+      \n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693827306867,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,10 +23,10 @@\n         )\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n+      allUsers\n \n-      \n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693827316429,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n         )\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n-      allUsers\n+      allUsers.map(as(user) =>\n \n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693827322802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n         )\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n-      allUsers.map(as(user) =>\n+      allUsers.map(async (user) => \n \n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693827330239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,11 @@\n         )\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n-      allUsers.map(async (user) => \n+      allUsers.map(async (user) => {\n+        const \n+      }\n \n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693827338813,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n       allUsers.map(async (user) => {\n-        const \n+        \n       }\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827353668,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,12 +23,11 @@\n         )\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n-      allUsers.map(async (user) => {\n-        \n-      }\n+      // allUsers.map(async (user) => {\n \n+      // }\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693827369906,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,11 +23,12 @@\n         )\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n-      // allUsers.map(async (user) => {\n+      allUsers.map(async (user) => {\n+        \n+      }\n \n-      // }\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693827388956,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n       })\n \n       allUsers.map(async (user) => {\n         \n-      }\n+      })\n \n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693827414559,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n       allUsers.map(async (user) => {\n-        \n+        retur\n       })\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827432726,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,14 @@\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n       allUsers.map(async (user) => {\n-        retur\n+        return {\n+          user: {\n+            receiverId: user._id,\n+            email: user.email,\n+            username: user.username,\n+          },\n       })\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827446417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,14 +24,9 @@\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n       allUsers.map(async (user) => {\n-        return {\n-          user: {\n-            receiverId: user._id,\n-            email: user.email,\n-            username: user.username,\n-          },\n+        \n       })\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827469091,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n       allUsers.map(async (user) => {\n-        \n+        const \n       })\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827475487,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,60 @@\n+const db = require(\"../models/index.js\")\n+const mongoose = require(\"mongoose\")\n+const User = db.user\n+const Conversation = db.conversation\n+\n+exports.allAccess = (req, res) => {\n+  res.status(200).send(\"Public Content.\")\n+}\n+\n+// Retrieve all users from the database.\n+exports.getAllUsers = async (req, res) => {\n+  try {\n+    const allUsers = await User.find({ _id: { $ne: req.userId } })\n+    console.log(\"allUsers : \" + allUsers)\n+    // res.status(200).json(allUsers)\n+\n+    const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n+\n+    const userData = Promise.all(\n+      conversation.map(async (conversation) => {\n+        const receiverId = conversation.members.find(\n+          (member) => member !== req.userId\n+        )\n+        console.log(\"receiverId : \" + receiverId)\n+      })\n+\n+      allUsers.map(async (user) => {\n+        const re\n+      })\n+\n+    )\n+    res.status(200).json(await userData)\n+  } catch (err) {\n+    res.status(400).json({ message: err.message })\n+  }\n+}\n+\n+exports.userBoard = (req, res) => {\n+  res.status(200).send(\"User Content.\")\n+}\n+\n+exports.adminBoard = (req, res) => {\n+  res.status(200).send(\"Admin Content.\")\n+}\n+\n+exports.superadminBoard = (req, res) => {\n+  res.status(200).send(\"Super Admin Content.\")\n+}\n+\n+exports.branchAdminBoard = (req, res) => {\n+  res.status(200).send(\"Branch Admin Content.\")\n+}\n+\n+exports.staffAccountBoard = (req, res) => {\n+  res.status(200).send(\"Staff Account Content.\")\n+}\n+\n+exports.operationalAdminBoard = (req, res) => {\n+  res.status(200).send(\"Operational Admin Content.\")\n+}\n"
+                },
+                {
+                    "date": 1693827481339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n       allUsers.map(async (user) => {\n-        const re\n+        const removeRe\n       })\n \n     )\n     res.status(200).json(await userData)\n@@ -57,64 +57,4 @@\n \n exports.operationalAdminBoard = (req, res) => {\n   res.status(200).send(\"Operational Admin Content.\")\n }\n-const db = require(\"../models/index.js\")\n-const mongoose = require(\"mongoose\")\n-const User = db.user\n-const Conversation = db.conversation\n-\n-exports.allAccess = (req, res) => {\n-  res.status(200).send(\"Public Content.\")\n-}\n-\n-// Retrieve all users from the database.\n-exports.getAllUsers = async (req, res) => {\n-  try {\n-    const allUsers = await User.find({ _id: { $ne: req.userId } })\n-    console.log(\"allUsers : \" + allUsers)\n-    // res.status(200).json(allUsers)\n-\n-    const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n-\n-    const userData = Promise.all(\n-      conversation.map(async (conversation) => {\n-        const receiverId = conversation.members.find(\n-          (member) => member !== req.userId\n-        )\n-        console.log(\"receiverId : \" + receiverId)\n-      })\n-\n-      allUsers.map(async (user) => {\n-        const \n-      })\n-\n-    )\n-    res.status(200).json(await userData)\n-  } catch (err) {\n-    res.status(400).json({ message: err.message })\n-  }\n-}\n-\n-exports.userBoard = (req, res) => {\n-  res.status(200).send(\"User Content.\")\n-}\n-\n-exports.adminBoard = (req, res) => {\n-  res.status(200).send(\"Admin Content.\")\n-}\n-\n-exports.superadminBoard = (req, res) => {\n-  res.status(200).send(\"Super Admin Content.\")\n-}\n-\n-exports.branchAdminBoard = (req, res) => {\n-  res.status(200).send(\"Branch Admin Content.\")\n-}\n-\n-exports.staffAccountBoard = (req, res) => {\n-  res.status(200).send(\"Staff Account Content.\")\n-}\n-\n-exports.operationalAdminBoard = (req, res) => {\n-  res.status(200).send(\"Operational Admin Content.\")\n-}\n"
+                },
+                {
+                    "date": 1693827487406,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n       allUsers.map(async (user) => {\n-        const removeRe\n+        const removeReceiver\n       })\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827502246,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n       allUsers.map(async (user) => {\n-        const removeReceiver\n+        const removeReceiveruserFromAllUsers = user\n       })\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827508260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n       allUsers.map(async (user) => {\n-        const removeReceiveruserFromAllUsers = user\n+        const removeReceiveruserFromAllUsers = user.find\n       })\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827513992,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n       allUsers.map(async (user) => {\n-        const removeReceiveruserFromAllUsers = user.find\n+        const removeReceiveruserFromAllUsers = user.find( { })\n       })\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827519513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n       allUsers.map(async (user) => {\n-        const removeReceiveruserFromAllUsers = user.find( { })\n+        const removeReceiveruserFromAllUsers = user.find( { _id: })\n       })\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827527573,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n       allUsers.map(async (user) => {\n-        const removeReceiveruserFromAllUsers = user.find( { _id: })\n+        const removeReceiveruserFromAllUsers = user.find( { _id: { }})\n       })\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827532809,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n       allUsers.map(async (user) => {\n-        const removeReceiveruserFromAllUsers = user.find( { _id: { }})\n+        const removeReceiveruserFromAllUsers = user.find( { _id: { re}})\n       })\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827538431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n       allUsers.map(async (user) => {\n-        const removeReceiveruserFromAllUsers = user.find( { _id: { re}})\n+        const removeReceiveruserFromAllUsers = user.find( { _id: { receiverId: user.id } })\n       })\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827549021,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,10 @@\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n       allUsers.map(async (user) => {\n-        const removeReceiveruserFromAllUsers = user.find( { _id: { receiverId: user.id } })\n+        const removeReceiveruserFromAllUsers = user.find({ _id: { receiverId } })\n+        \n       })\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827558048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n       })\n \n       allUsers.map(async (user) => {\n         const removeReceiveruserFromAllUsers = user.find({ _id: { receiverId } })\n-        \n+        cons\n       })\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827563429,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n       })\n \n       allUsers.map(async (user) => {\n         const removeReceiveruserFromAllUsers = user.find({ _id: { receiverId } })\n-        cons\n+        console.log(removeReceiveruserFromAllUsers)\n       })\n \n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693827638951,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,13 +23,12 @@\n         )\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n-      allUsers.map(async (user) => {\n-        const removeReceiveruserFromAllUsers = user.find({ _id: { receiverId } })\n-        console.log(removeReceiveruserFromAllUsers)\n-      })\n-\n+      // allUsers.map(async (user) => {\n+      //   const removeReceiveruserFromAllUsers = user.find({ _id: { receiverId } })\n+      //   console.log(removeReceiveruserFromAllUsers)\n+      // })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693827723383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n     console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n-    const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n+    //const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n \n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n"
+                },
+                {
+                    "date": 1693827779569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,12 +13,12 @@\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n     console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n-    //const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n+    const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n \n     const userData = Promise.all(\n-      conversation.map(async (conversation) => {\n+      Conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n         console.log(\"receiverId : \" + receiverId)\n"
+                },
+                {
+                    "date": 1693828055189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,19 +16,16 @@\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n \n     const userData = Promise.all(\n-      Conversation.map(async (conversation) => {\n+      conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n         console.log(\"receiverId : \" + receiverId)\n       })\n \n-      // allUsers.map(async (user) => {\n-      //   const removeReceiveruserFromAllUsers = user.find({ _id: { receiverId } })\n-      //   console.log(removeReceiveruserFromAllUsers)\n-      // })\n+      \n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693828072500,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,18 +15,9 @@\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n \n-    const userData = Promise.all(\n-      conversation.map(async (conversation) => {\n-        const receiverId = conversation.members.find(\n-          (member) => member !== req.userId\n-        )\n-        console.log(\"receiverId : \" + receiverId)\n-      })\n-\n-      \n-    )\n+    \n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693828082391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,10 +14,9 @@\n     console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n-\n-    \n+    conversation.map()\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693828094960,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,12 @@\n     console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n-    conversation.map()\n+    conversation.map(async (conversation) => {\n+        const receiverId = conversation.members.find(\n+          (member) => member !== userId\n+        )\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693828120644,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,12 @@\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     conversation.map(async (conversation) => {\n-        const receiverId = conversation.members.find(\n-          (member) => member !== userId\n-        )\n+      const receiverId = conversation.members.find(\n+        (member) => member !== userId\n+      )\n+    })\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693828126299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n       const receiverId = conversation.members.find(\n         (member) => member !== userId\n       )\n     })\n+    c\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693828131619,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n       const receiverId = conversation.members.find(\n         (member) => member !== userId\n       )\n     })\n-    c\n+    console.log()\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693828159376,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,12 +16,12 @@\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     conversation.map(async (conversation) => {\n       const receiverId = conversation.members.find(\n-        (member) => member !== userId\n+        (member) => member !== requserId\n       )\n     })\n-    console.log()\n+    console.log(\"receiverId : \" + receiverId)\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693828214058,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,13 +14,24 @@\n     console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n-    conversation.map(async (conversation) => {\n-      const receiverId = conversation.members.find(\n-        (member) => member !== requserId\n-      )\n-    })\n+    const conversationUserData = Promise.all(\n+      conversation.map(async (conversation) => {\n+        const receiverId = conversation.members.find(\n+          (member) => member !== userId\n+        )\n+        const user = await User.findById(receiverId)\n+        return {\n+          user: {\n+            receiverId: user._id,\n+            email: user.email,\n+            username: user.username,\n+          },\n+          conversationId: conversation._id,\n+        }\n+      })\n+    )\n     console.log(\"receiverId : \" + receiverId)\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693828219825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n         )\n+    console.log(\"receiverId : \" + receiverId)\n         const user = await User.findById(receiverId)\n         return {\n           user: {\n             receiverId: user._id,\n@@ -30,9 +31,8 @@\n           conversationId: conversation._id,\n         }\n       })\n     )\n-    console.log(\"receiverId : \" + receiverId)\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693828225100,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,18 +19,10 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n         )\n-    console.log(\"receiverId : \" + receiverId)\n+        console.log(\"receiverId : \" + receiverId)\n         const user = await User.findById(receiverId)\n-        return {\n-          user: {\n-            receiverId: user._id,\n-            email: user.email,\n-            username: user.username,\n-          },\n-          conversationId: conversation._id,\n-        }\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693828240556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     const conversationUserData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n-          (member) => member !== userId\n+          (member) => member !== requserId\n         )\n         console.log(\"receiverId : \" + receiverId)\n         const user = await User.findById(receiverId)\n       })\n"
+                },
+                {
+                    "date": 1693828268053,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,12 +17,12 @@\n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     const conversationUserData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n-          (member) => member !== requserId\n+          (member) => member !== req.userId\n         )\n         console.log(\"receiverId : \" + receiverId)\n-        const user = await User.findById(receiverId)\n+        const user = await allUsers.findById(receiverId)\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693828276910,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n         console.log(\"receiverId : \" + receiverId)\n-        const user = await allUsers.findById(receiverId)\n+        const user = await allUsers.find(receiverId)\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693828288836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n         console.log(\"receiverId : \" + receiverId)\n-        const user = await allUsers.find(receiverId)\n+        const user = await allUsers.find({ _id: { $ne: req.userId } })\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693828299770,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n         console.log(\"receiverId : \" + receiverId)\n-        const user = await allUsers.find({ _id: { $ne: req.userId } })\n+        const user = await allUsers.find({ _id: { $nin: req.userId } })\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693828312932,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n         console.log(\"receiverId : \" + receiverId)\n-        const user = await allUsers.find({ _id: { $nin: req.userId } })\n+        const user = await allUsers.find({ _id: { $nin: [req.userId,  } })\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693828318434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n         console.log(\"receiverId : \" + receiverId)\n-        const user = await allUsers.find({ _id: { $nin: [req.userId,  } })\n+        const user = await allUsers.find({ _id: { $nin: [req.userId,  receiverId} })\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693828325936,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,12 @@\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n         console.log(\"receiverId : \" + receiverId)\n-        const user = await allUsers.find({ _id: { $nin: [req.userId,  receiverId} })\n+        const user = await allUsers.find({\n+          _id: { $nin: [req.userId, receiverId] },\n+        })\n+        \n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693828332228,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,10 @@\n         console.log(\"receiverId : \" + receiverId)\n         const user = await allUsers.find({\n           _id: { $nin: [req.userId, receiverId] },\n         })\n-        \n+        console.log(\"receiverId : \" + receiverId)\n+\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693828552506,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,17 +16,16 @@\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     const conversationUserData = Promise.all(\n       conversation.map(async (conversation) => {\n-        const receiverId = conversation.members.find(\n+        re receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n         console.log(\"receiverId : \" + receiverId)\n         const user = await allUsers.find({\n           _id: { $nin: [req.userId, receiverId] },\n         })\n-        console.log(\"receiverId : \" + receiverId)\n-\n+        console.log(\"user : \" + user)\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693828563764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,16 +16,12 @@\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     const conversationUserData = Promise.all(\n       conversation.map(async (conversation) => {\n-        re receiverId = conversation.members.find(\n+        return receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        console.log(\"receiverId : \" + receiverId)\n-        const user = await allUsers.find({\n-          _id: { $nin: [req.userId, receiverId] },\n-        })\n-        console.log(\"user : \" + user)\n+        \n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693828573134,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,13 @@\n         )\n         \n       })\n     )\n+    console.log(\"receiverId : \" + receiverId)\n+    const user = await allUsers.find({\n+      _id: { $nin: [req.userId, receiverId] },\n+    })\n+    console.log(\"user : \" + user)\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693828710545,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,17 +16,16 @@\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     const conversationUserData = Promise.all(\n       conversation.map(async (conversation) => {\n-        return receiverId = conversation.members.find(\n+        return (receiverId = conversation.members.find(\n           (member) => member !== req.userId\n-        )\n-        \n+        ))\n       })\n     )\n     console.log(\"receiverId : \" + receiverId)\n     const user = await allUsers.find({\n-      _id: { $nin: [req.userId, receiverId] },\n+      _id: { $ne: [req.userId, receiverId] },\n     })\n     console.log(\"user : \" + user)\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693828723807,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n       })\n     )\n     console.log(\"receiverId : \" + receiverId)\n     const user = await allUsers.find({\n-      _id: { $ne: [req.userId, receiverId] },\n+      _id: { $ne: receiverId] },\n     })\n     console.log(\"user : \" + user)\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693828749397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,13 +21,9 @@\n           (member) => member !== req.userId\n         ))\n       })\n     )\n-    console.log(\"receiverId : \" + receiverId)\n-    const user = await allUsers.find({\n-      _id: { $ne: receiverId] },\n-    })\n-    console.log(\"user : \" + user)\n+    \n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693828754514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,13 @@\n       conversation.map(async (conversation) => {\n         return (receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         ))\n-      })\n+      })console.log(\"receiverId : \" + receiverId)\n+    const user = await allUsers.find({\n+      _id: { $ne: receiverId },\n+    })\n+    console.log(\"user : \" + user)\n     )\n     \n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693828759675,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,10 @@\n       conversation.map(async (conversation) => {\n         return (receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         ))\n-      })console.log(\"receiverId : \" + receiverId)\n+      })\n+      console.log(\"receiverId : \" + receiverId)\n     const user = await allUsers.find({\n       _id: { $ne: receiverId },\n     })\n     console.log(\"user : \" + user)\n"
+                },
+                {
+                    "date": 1693828778298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n           (member) => member !== req.userId\n         ))\n       })\n       console.log(\"receiverId : \" + receiverId)\n-    const user = await allUsers.find({\n+    re user = await allUsers.find({\n       _id: { $ne: receiverId },\n     })\n     console.log(\"user : \" + user)\n     )\n"
+                },
+                {
+                    "date": 1693828783814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n           (member) => member !== req.userId\n         ))\n       })\n       console.log(\"receiverId : \" + receiverId)\n-    re user = await allUsers.find({\n+    return user = await allUsers.find({\n       _id: { $ne: receiverId },\n     })\n     console.log(\"user : \" + user)\n     )\n"
+                },
+                {
+                    "date": 1693828792276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n-    const conversationUserData = Promise.all(\n+    const gserData = Promise.all(\n       conversation.map(async (conversation) => {\n         return (receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         ))\n"
+                },
+                {
+                    "date": 1693828800216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n-    const gserData = Promise.all(\n+    const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         return (receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         ))\n"
+                },
+                {
+                    "date": 1693828828477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,12 +21,12 @@\n           (member) => member !== req.userId\n         ))\n       })\n       console.log(\"receiverId : \" + receiverId)\n-    return user = await allUsers.find({\n-      _id: { $ne: receiverId },\n-    })\n-    console.log(\"user : \" + user)\n+    // return user = await allUsers.find({\n+    //   _id: { $ne: receiverId },\n+    // })\n+    // console.log(\"user : \" + user)\n     )\n     \n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693828840819,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,15 +20,15 @@\n         return (receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         ))\n       })\n-      console.log(\"receiverId : \" + receiverId)\n-    // return user = await allUsers.find({\n-    //   _id: { $ne: receiverId },\n-    // })\n-    // console.log(\"user : \" + user)\n+      //console.log(\"receiverId : \" + receiverId)\n+      // return user = await allUsers.find({\n+      //   _id: { $ne: receiverId },\n+      // })\n+      // console.log(\"user : \" + user)\n     )\n-    \n+\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693829088046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n         return (receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         ))\n       })\n-      //console.log(\"receiverId : \" + receiverId)\n+      console.log(\"receiverId : \" + receiverId)\n       // return user = await allUsers.find({\n       //   _id: { $ne: receiverId },\n       // })\n       // console.log(\"user : \" + user)\n"
+                },
+                {
+                    "date": 1693829120560,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,8 @@\n         return (receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         ))\n       })\n-      console.log(\"receiverId : \" + receiverId)\n       // return user = await allUsers.find({\n       //   _id: { $ne: receiverId },\n       // })\n       // console.log(\"user : \" + user)\n"
+                },
+                {
+                    "date": 1693829175843,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,15 +19,16 @@\n       conversation.map(async (conversation) => {\n         return (receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         ))\n+        console.log(\"receiverId : \" + receiverId)\n       })\n       // return user = await allUsers.find({\n       //   _id: { $ne: receiverId },\n       // })\n       // console.log(\"user : \" + user)\n     )\n-\n+console.log(\"user : \" + user)\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693829339048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,14 +21,14 @@\n           (member) => member !== req.userId\n         ))\n         console.log(\"receiverId : \" + receiverId)\n       })\n-      // return user = await allUsers.find({\n-      //   _id: { $ne: receiverId },\n-      // })\n-      // console.log(\"user : \" + user)\n+      return user = await allUsers.find({\n+        _id: { $ne: receiverId },\n+      })\n+      console.log(\"user : \" + user)\n     )\n-console.log(\"user : \" + user)\n+    console.log(\"userData : \" + userData)\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693829348524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n           (member) => member !== req.userId\n         ))\n         console.log(\"receiverId : \" + receiverId)\n       })\n-      return user = await allUsers.find({\n+      user = await allUsers.find({\n         _id: { $ne: receiverId },\n       })\n       console.log(\"user : \" + user)\n     )\n"
+                },
+                {
+                    "date": 1693829364465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n           (member) => member !== req.userId\n         ))\n         console.log(\"receiverId : \" + receiverId)\n       })\n-      user = await allUsers.find({\n+      const user = await allUsers.find({\n         _id: { $ne: receiverId },\n       })\n       console.log(\"user : \" + user)\n     )\n"
+                },
+                {
+                    "date": 1693829423652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,17 +16,21 @@\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n-        return (receiverId = conversation.members.find(\n-          (member) => member !== req.userId\n-        ))\n-        console.log(\"receiverId : \" + receiverId)\n+        const receiverId = conversation.members.find(\n+          (member) => member !== userId\n+        )\n+        const user = await User.findById(receiverId)\n+        return {\n+          user: {\n+            receiverId: user._id,\n+            email: user.email,\n+            username: user.username,\n+          },\n+          conversationId: conversation._id,\n+        }\n       })\n-      const user = await allUsers.find({\n-        _id: { $ne: receiverId },\n-      })\n-      console.log(\"user : \" + user)\n     )\n     console.log(\"userData : \" + userData)\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693829430480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n         )\n-        const user = await User.findById(receiverId)\n+        const user = await allUsers.findById(receiverId)\n         return {\n           user: {\n             receiverId: user._id,\n             email: user.email,\n"
+                },
+                {
+                    "date": 1693829440207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n         )\n-        const user = await allUsers.findById(receiverId)\n+        const user = await allUsers.find({ _id: { $ne: req.userId } })\n         return {\n           user: {\n             receiverId: user._id,\n             email: user.email,\n"
+                },
+                {
+                    "date": 1693829448764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n         )\n-        const user = await allUsers.find({ _id: { $ne: req.userId } })\n+        const user = await allUsers.find({ _id: { $ne: receiverId } })\n         return {\n           user: {\n             receiverId: user._id,\n             email: user.email,\n"
+                },
+                {
+                    "date": 1693829459247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,8 @@\n             receiverId: user._id,\n             email: user.email,\n             username: user.username,\n           },\n-          conversationId: conversation._id,\n         }\n       })\n     )\n     console.log(\"userData : \" + userData)\n"
+                },
+                {
+                    "date": 1693829489036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n-    console.log(\"allUsers : \" + allUsers)\n+    //console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     const userData = Promise.all(\n"
+                },
+                {
+                    "date": 1693829499660,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,8 @@\n           },\n         }\n       })\n     )\n-    console.log(\"userData : \" + userData)\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693829506180,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n         )\n         const user = await allUsers.find({ _id: { $ne: receiverId } })\n-        return {\n+        return users{\n           user: {\n             receiverId: user._id,\n             email: user.email,\n             username: user.username,\n"
+                },
+                {
+                    "date": 1693829517179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,15 +20,9 @@\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n         )\n         const user = await allUsers.find({ _id: { $ne: receiverId } })\n-        return users{\n-          user: {\n-            receiverId: user._id,\n-            email: user.email,\n-            username: user.username,\n-          },\n-        }\n+        return user\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693829524961,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,10 +19,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n         )\n-        const user = await allUsers.find({ _id: { $ne: receiverId } })\n-        return user\n+        return user = await allUsers.find({ _id: { $ne: receiverId } })\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693829550548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,11 +17,11 @@\n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n-          (member) => member !== userId\n+          (member) => member !== req.userId\n         )\n-        return user = await allUsers.find({ _id: { $ne: receiverId } })\n+        return (user = await allUsers.find({ _id: { $ne: receiverId } }))\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693829618914,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,17 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        return (user = await allUsers.find({ _id: { $ne: receiverId } }))\n+        const user = await User.findById(receiverId)\n+        return {\n+          user: {\n+            receiverId: user._id,\n+            email: user.email,\n+            username: user.username,\n+          },\n+          conversationId: conversation._id,\n+        }\n       })\n     )\n     res.status(200).json(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693829629044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        const user = await User.findById(receiverId)\n+        const user = await User.find({ _id: { $ne: req.userId } })\n         return {\n           user: {\n             receiverId: user._id,\n             email: user.email,\n"
+                },
+                {
+                    "date": 1693829671804,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,13 +22,12 @@\n         )\n         const user = await User.find({ _id: { $ne: req.userId } })\n         return {\n           user: {\n-            receiverId: user._id,\n+            _id: user._id,\n             email: user.email,\n             username: user.username,\n           },\n-          conversationId: conversation._id,\n         }\n       })\n     )\n     res.status(200).json(await userData)\n"
+                },
+                {
+                    "date": 1693829679720,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        const user = await User.find({ _id: { $ne: req.userId } })\n+        const user = await allUsers.find({ _id: { $ne: req.userId } })\n         return {\n           user: {\n             _id: user._id,\n             email: user.email,\n"
+                },
+                {
+                    "date": 1693829688465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n         )\n         const user = await allUsers.find({ _id: { $ne: req.userId } })\n         return {\n           user: {\n-            _id: user._id,\n+            _id: allUsers._id,\n             email: user.email,\n             username: user.username,\n           },\n         }\n"
+                },
+                {
+                    "date": 1693829780312,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,14 +19,14 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        const user = await allUsers.find({ _id: { $ne: req.userId } })\n+        const user = await allUsers.find({ _id: { $ne: receiverId } })\n         return {\n           user: {\n             _id: allUsers._id,\n-            email: user.email,\n-            username: user.username,\n+            email: allUsers.email,\n+            username: allUsers.username,\n           },\n         }\n       })\n     )\n"
+                },
+                {
+                    "date": 1693829810184,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n+        console.log(\"allUsers : \" + allUsers)\n         const user = await allUsers.find({ _id: { $ne: receiverId } })\n         return {\n           user: {\n             _id: allUsers._id,\n"
+                },
+                {
+                    "date": 1693829838795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        console.log(\"allUsers : \" + allUsers)\n+        console.log(\"allUsers : \" + allUsers + )\n         const user = await allUsers.find({ _id: { $ne: receiverId } })\n         return {\n           user: {\n             _id: allUsers._id,\n"
+                },
+                {
+                    "date": 1693829846555,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        console.log(\"allUsers : \" + allUsers + )\n+        console.log(\"allUsers : \" + allUsers + \" Receive\")\n         const user = await allUsers.find({ _id: { $ne: receiverId } })\n         return {\n           user: {\n             _id: allUsers._id,\n"
+                },
+                {
+                    "date": 1693829896453,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,14 +19,14 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        console.log(\"allUsers : \" + allUsers + \" Receive\")\n+        console.log(\"allUsers : \" + allUsers + \" Receiver Id : \" + receiverId)\n         const user = await allUsers.find({ _id: { $ne: receiverId } })\n         return {\n           user: {\n-            _id: allUsers._id,\n-            email: allUsers.email,\n+            _id: user._id,\n+            email: user.email,\n             username: allUsers.username,\n           },\n         }\n       })\n"
+                },
+                {
+                    "date": 1693829915124,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,13 +25,14 @@\n         return {\n           user: {\n             _id: user._id,\n             email: user.email,\n-            username: allUsers.username,\n+            username: user.username,\n           },\n         }\n       })\n     )\n+    con\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693829921093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n           },\n         }\n       })\n     )\n-    con\n+    console.l\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693829934392,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n           },\n         }\n       })\n     )\n-    console.l\n+    console.log(user)\n     res.status(200).json(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693829961956,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,10 @@\n           },\n         }\n       })\n     )\n-    console.log(user)\n     res.status(200).json(await userData)\n+    console.log(userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n }\n"
+                },
+                {
+                    "date": 1693830015949,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n           (member) => member !== req.userId\n         )\n         console.log(\"allUsers : \" + allUsers + \" Receiver Id : \" + receiverId)\n         const user = await allUsers.find({ _id: { $ne: receiverId } })\n+        console.log(\"allUsers : \" + allUsers + \" Receiver Id : \" + receiverId)\n         return {\n           user: {\n             _id: user._id,\n             email: user.email,\n@@ -31,9 +32,9 @@\n         }\n       })\n     )\n     res.status(200).json(await userData)\n-    console.log(userData)\n+    console.log(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n }\n"
+                },
+                {
+                    "date": 1693830022286,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n           (member) => member !== req.userId\n         )\n         console.log(\"allUsers : \" + allUsers + \" Receiver Id : \" + receiverId)\n         const user = await allUsers.find({ _id: { $ne: receiverId } })\n-        console.log(\"allUsers : \" + allUsers + \" Receiver Id : \" + receiverId)\n+        console.log(\"user : \" + user)\n         return {\n           user: {\n             _id: user._id,\n             email: user.email,\n"
+                },
+                {
+                    "date": 1693830060590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        console.log(\"allUsers : \" + allUsers + \" Receiver Id : \" + receiverId)\n+        console.log(\" Receiver Id : \" + receiverId)\n         const user = await allUsers.find({ _id: { $ne: receiverId } })\n         console.log(\"user : \" + user)\n         return {\n           user: {\n"
+                },
+                {
+                    "date": 1693830168177,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,8 @@\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n-        console.log(\" Receiver Id : \" + receiverId)\n         const user = await allUsers.find({ _id: { $ne: receiverId } })\n         console.log(\"user : \" + user)\n         return {\n           user: {\n"
+                },
+                {
+                    "date": 1693830174019,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n     //console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n+        console.log(\" conversation Id : \" + conversation)\n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n"
+                },
+                {
+                    "date": 1693830218154,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,10 +13,10 @@\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n     //console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n-    const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n-        console.log(\" conversation Id : \" + conversation)\n+    //const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n+    console.log(\" conversation : \" + conversation)\n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n"
+                },
+                {
+                    "date": 1693830257321,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,10 @@\n     //console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     //const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n-    console.log(\" conversation : \" + conversation)\n+    //console.log(\" conversation : \" + conversation)\n+    \n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n"
+                },
+                {
+                    "date": 1693830264745,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     // res.status(200).json(allUsers)\n \n     //const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     //console.log(\" conversation : \" + conversation)\n-    \n+    const conversation = \n     const userData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n"
+                },
+                {
+                    "date": 1693830272539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,10 @@\n     // res.status(200).json(allUsers)\n \n     //const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     //console.log(\" conversation : \" + conversation)\n-    const conversation = \n     const userData = Promise.all(\n-      conversation.map(async (conversation) => {\n+      conversation.map(async (Conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== req.userId\n         )\n         const user = await allUsers.find({ _id: { $ne: receiverId } })\n"
+                },
+                {
+                    "date": 1693830552244,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n     //console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n-    //const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n+    const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     //console.log(\" conversation : \" + conversation)\n     const userData = Promise.all(\n       conversation.map(async (Conversation) => {\n         const receiverId = conversation.members.find(\n"
+                },
+                {
+                    "date": 1693830561868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,25 +14,25 @@\n     //console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n-    //console.log(\" conversation : \" + conversation)\n-    const userData = Promise.all(\n-      conversation.map(async (Conversation) => {\n-        const receiverId = conversation.members.find(\n-          (member) => member !== req.userId\n-        )\n-        const user = await allUsers.find({ _id: { $ne: receiverId } })\n-        console.log(\"user : \" + user)\n-        return {\n-          user: {\n-            _id: user._id,\n-            email: user.email,\n-            username: user.username,\n-          },\n-        }\n-      })\n-    )\n+    console.log(\" conversation : \" + conversation)\n+    // const userData = Promise.all(\n+    //   conversation.map(async (Conversation) => {\n+    //     const receiverId = conversation.members.find(\n+    //       (member) => member !== req.userId\n+    //     )\n+    //     const user = await allUsers.find({ _id: { $ne: receiverId } })\n+    //     console.log(\"user : \" + user)\n+    //     return {\n+    //       user: {\n+    //         _id: user._id,\n+    //         email: user.email,\n+    //         username: user.username,\n+    //       },\n+    //     }\n+    //   })\n+    // )\n     res.status(200).json(await userData)\n     console.log(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693830585464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n     const allUsers = await User.find({ _id: { $ne: req.userId } })\n-    //console.log(\"allUsers : \" + allUsers)\n+    console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     console.log(\" conversation : \" + conversation)\n"
+                },
+                {
+                    "date": 1693830716493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n-    const allUsers = await User.find({ _id: { $ne: req.userId } })\n+    //const allUsers = await User.find({ _id: { $ne: req.userId } })\n     console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n"
+                },
+                {
+                    "date": 1693830723041,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n // Retrieve all users from the database.\n exports.getAllUsers = async (req, res) => {\n   try {\n     //const allUsers = await User.find({ _id: { $ne: req.userId } })\n-    console.log(\"allUsers : \" + allUsers)\n+    //console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n     const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n     console.log(\" conversation : \" + conversation)\n@@ -31,8 +31,9 @@\n     //       },\n     //     }\n     //   })\n     // )\n+    \n     res.status(200).json(await userData)\n     console.log(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693830730392,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     //       },\n     //     }\n     //   })\n     // )\n-    \n+    const allUsers = await User.find\n     res.status(200).json(await userData)\n     console.log(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693830736873,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     //       },\n     //     }\n     //   })\n     // )\n-    const allUsers = await User.find\n+    const allUsers = await User.find({ _id})\n     res.status(200).json(await userData)\n     console.log(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693830744274,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     //       },\n     //     }\n     //   })\n     // )\n-    const allUsers = await User.find({ _id})\n+    const allUsers = await User.find({ _id: { $nin}})\n     res.status(200).json(await userData)\n     console.log(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693830754874,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     //       },\n     //     }\n     //   })\n     // )\n-    const allUsers = await User.find({ _id: { $nin}})\n+    const allUsers = await User.find({ _id: { $nin: [user._id]}})\n     res.status(200).json(await userData)\n     console.log(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693830762199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     //       },\n     //     }\n     //   })\n     // )\n-    const allUsers = await User.find({ _id: { $nin: [user._id]}})\n+    const allUsers = await User.find({ _id: { $nin: [conver]}})\n     res.status(200).json(await userData)\n     console.log(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693830768989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     //       },\n     //     }\n     //   })\n     // )\n-    const allUsers = await User.find({ _id: { $nin: [conver]}})\n+    const allUsers = await User.find({ _id: { $nin: [conversation.member]}})\n     res.status(200).json(await userData)\n     console.log(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693830777246,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     //       },\n     //     }\n     //   })\n     // )\n-    const allUsers = await User.find({ _id: { $nin: [conversation.member]}})\n+    const allUsers = await User.find({ _id: { $nin: [conversation.member] } })\n     res.status(200).json(await userData)\n     console.log(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693830793153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     //       },\n     //     }\n     //   })\n     // )\n-    const allUsers = await User.find({ _id: { $nin: [conversation.member] } })\n+    const allUsers = await User.find({ _id: { $nin: [conversation.members] } })\n     res.status(200).json(await userData)\n     console.log(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693830814614,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,9 @@\n     //     }\n     //   })\n     // )\n     const allUsers = await User.find({ _id: { $nin: [conversation.members] } })\n+    \n     res.status(200).json(await userData)\n     console.log(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693830823487,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n     //     }\n     //   })\n     // )\n     const allUsers = await User.find({ _id: { $nin: [conversation.members] } })\n-    \n+    console.log(\"\"+allUsers)\n     res.status(200).json(await userData)\n     console.log(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693830918539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,28 +13,26 @@\n     //const allUsers = await User.find({ _id: { $ne: req.userId } })\n     //console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n \n-    const conversation = await Conversation.find({ _id: { $ne: req.userId } })\n-    console.log(\" conversation : \" + conversation)\n-    // const userData = Promise.all(\n-    //   conversation.map(async (Conversation) => {\n-    //     const receiverId = conversation.members.find(\n-    //       (member) => member !== req.userId\n-    //     )\n-    //     const user = await allUsers.find({ _id: { $ne: receiverId } })\n-    //     console.log(\"user : \" + user)\n-    //     return {\n-    //       user: {\n-    //         _id: user._id,\n-    //         email: user.email,\n-    //         username: user.username,\n-    //       },\n-    //     }\n-    //   })\n-    // )\n+    const conversationUserData = Promise.all(\n+      conversation.map(async (conversation) => {\n+        const receiverId = conversation.members.find(\n+          (member) => member !== userId\n+        )\n+        const user = await User.findById(receiverId)\n+        return {\n+          user: {\n+            receiverId: user._id,\n+            email: user.email,\n+            username: user.username,\n+          },\n+          conversationId: conversation._id,\n+        }\n+      })\n+    )\n     const allUsers = await User.find({ _id: { $nin: [conversation.members] } })\n-    console.log(\"\"+allUsers)\n+    console.log(\"All Users : \" + allUsers)\n     res.status(200).json(await userData)\n     console.log(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n"
+                },
+                {
+                    "date": 1693830925344,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,8 @@\n           conversationId: conversation._id,\n         }\n       })\n     )\n-    const allUsers = await User.find({ _id: { $nin: [conversation.members] } })\n     console.log(\"All Users : \" + allUsers)\n     res.status(200).json(await userData)\n     console.log(await userData)\n   } catch (err) {\n"
+                },
+                {
+                    "date": 1693830963992,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,14 @@\n   try {\n     //const allUsers = await User.find({ _id: { $ne: req.userId } })\n     //console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n-\n+    const userId = req.userId\n+    const conversation = await Conversation.find({\n+      members: {\n+        $in: [userId],\n+      },\n+    })\n     const conversationUserData = Promise.all(\n       conversation.map(async (conversation) => {\n         const receiverId = conversation.members.find(\n           (member) => member !== userId\n@@ -29,10 +34,10 @@\n           conversationId: conversation._id,\n         }\n       })\n     )\n-    console.log(\"All Users : \" + allUsers)\n-    res.status(200).json(await userData)\n+    console.log(\"All Users : \" + conversationUserData)\n+    res.status(200).json(await conversationUserData)\n     console.log(await userData)\n   } catch (err) {\n     res.status(400).json({ message: err.message })\n   }\n"
+                },
+                {
+                    "date": 1693830996477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     // res.status(200).json(allUsers)\n     const userId = req.userId\n     const conversation = await Conversation.find({\n       members: {\n-        $in: [userId],\n+        $in: [reuserId],\n       },\n     })\n     const conversationUserData = Promise.all(\n       conversation.map(async (conversation) => {\n"
+                },
+                {
+                    "date": 1693831003622,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     // res.status(200).json(allUsers)\n     const userId = req.userId\n     const conversation = await Conversation.find({\n       members: {\n-        $in: [reuserId],\n+        $in: req.userId,\n       },\n     })\n     const conversationUserData = Promise.all(\n       conversation.map(async (conversation) => {\n"
+                },
+                {
+                    "date": 1693831009543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   try {\n     //const allUsers = await User.find({ _id: { $ne: req.userId } })\n     //console.log(\"allUsers : \" + allUsers)\n     // res.status(200).json(allUsers)\n-    \n+\n     const conversation = await Conversation.find({\n       members: {\n         $in: req.userId,\n       },\n"
+                },
+                {
+                    "date": 1693831079673,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,68 @@\n+const db = require(\"../models/index.js\")\n+const mongoose = require(\"mongoose\")\n+const User = db.user\n+const Conversation = db.conversation\n+\n+exports.allAccess = (req, res) => {\n+  res.status(200).send(\"Public Content.\")\n+}\n+\n+// Retrieve all users from the database.\n+exports.getAllUsers = async (req, res) => {\n+  try {\n+    //const allUsers = await User.find({ _id: { $ne: req.userId } })\n+    //console.log(\"allUsers : \" + allUsers)\n+    // res.status(200).json(allUsers)\n+\n+    const conversation = await Conversation.find({\n+      members: {\n+        $in: req.userId,\n+      },\n+    })\n+    const conversationUserData = Promise.all(\n+      conversation.map(async (conversation) => {\n+        const receiverId = conversation.members.find(\n+          (member) => member !== req.userId\n+        )\n+        const user = await User.findById({ $ne: receiverId })\n+        return {\n+          user: {\n+            receiverId: user._id,\n+            email: user.email,\n+            username: user.username,\n+          },\n+          conversationId: conversation._id,\n+        }\n+      })\n+    )\n+    console.log(\"All Users : \" + conversationUserData)\n+    res.status(200).json(await conversationUserData)\n+    console.log(await userData)\n+  } catch (err) {\n+    res.status(400).json({ message: err.message })\n+  }\n+}\n+\n+exports.userBoard = (req, res) => {\n+  res.status(200).send(\"User Content.\")\n+}\n+\n+exports.adminBoard = (req, res) => {\n+  res.status(200).send(\"Admin Content.\")\n+}\n+\n+exports.superadminBoard = (req, res) => {\n+  res.status(200).send(\"Super Admin Content.\")\n+}\n+\n+exports.branchAdminBoard = (req, res) => {\n+  res.status(200).send(\"Branch Admin Content.\")\n+}\n+\n+exports.staffAccountBoard = (req, res) => {\n+  res.status(200).send(\"Staff Account Content.\")\n+}\n+\n+exports.operationalAdminBoard = (req, res) => {\n+  res.status(200).send(\"Operational Admin Content.\")\n+}\n"
+                }
+            ],
+            "date": 1693230303249,
+            "name": "Commit-0",
+            "content": "exports.allAccess = (req, res) => {\n  res.status(200).send(\"Public Content.\");\n};\n\n\n// Retrieve all Tutorials from the database.\nexports.findAll = (req, res) => {\n  const title = req.query.title\n  var condition = title ? { title: { $regex: new RegExp(title), $options: \"i\" } } : {}\n\n  Tutorial.find(condition)\n    .then(data => {\n      res.send(data)\n    })\n    .catch(err => {\n      res.status(500).send({\n        message:\n          err.message || \"Some error occurred while retrieving tutorials.\"\n      })\n    })\n}\n\nexports.userBoard = (req, res) => {\n  res.status(200).send(\"User Content.\");\n};\n\nexports.adminBoard = (req, res) => {\n  res.status(200).send(\"Admin Content.\");\n};\n\nexports.superadminBoard = (req, res) => {\n  res.status(200).send(\"Super Admin Content.\");\n};\n\nexports.branchAdminBoard = (req, res) => {\n  res.status(200).send(\"Branch Admin Content.\");\n};\n\nexports.staffAccountBoard = (req, res) => {\n  res.status(200).send(\"Staff Account Content.\");\n};\n\nexports.operationalAdminBoard = (req, res) => {\n  res.status(200).send(\"Operational Admin Content.\");\n};\n"
+        }
+    ]
+}
